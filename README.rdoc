@@ -1,0 +1,46 @@
+== README
+
+Database:
+
+Models:
+  Item
+    name:string
+    price:integer (in cents)
+
+  Attribute
+    name:string
+    price:integer (in cents, optional)
+
+  Attribution
+    item_id:integer
+    attribute_id:integer
+
+  Transaction
+    timestamps
+    total:integer (in cents)
+    payment_method: string
+    payment_given:integer (in cents)
+
+  TransactionItem
+    transaction_id:integer
+    item_id:integer
+
+  TransactionalAttributions
+    transaction_item_id:integer
+    attribution_id:iteger
+
+
+(Extras)
+
+  Employee
+    name:string
+    password:string
+    status:string
+
+  Shift
+    employee_id:integer
+    clock_in:time
+    clock_out:time
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
