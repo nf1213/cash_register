@@ -16,23 +16,23 @@ ActiveRecord::Schema.define(version: 20141223211245) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "attributes", force: true do |t|
-    t.string   "name",       null: false
-    t.integer  "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "attributions", force: true do |t|
-    t.integer  "item_id",      null: false
-    t.integer  "attribute_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "items", force: true do |t|
     t.string   "name",       null: false
     t.integer  "price",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "modifications", force: true do |t|
+    t.integer  "item_id",    null: false
+    t.integer  "mod_id",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mods", force: true do |t|
+    t.string   "name",       null: false
+    t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
