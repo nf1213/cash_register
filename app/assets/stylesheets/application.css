@@ -14,12 +14,19 @@
  *= require_self
  */
 
- .item {
+ .item, .mod {
    width: 75px;
    height: 50px;
    padding: 5px;
    margin: 5px;
-   background-color: blue;
    color: white;
    display: inline-block;
+ }
+
+ .item {
+   background-color: blue;
+ }
+
+ .mod {
+   background-color: green;
  }
