@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223211245) do
+ActiveRecord::Schema.define(version: 20141225215149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,26 @@ ActiveRecord::Schema.define(version: 20141223211245) do
   create_table "mods", force: true do |t|
     t.string   "name",       null: false
     t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transaction_items", force: true do |t|
+    t.integer  "transaction_id", null: false
+    t.integer  "item_id",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactional_modifications", force: true do |t|
+    t.integer  "transaction_item_id", null: false
+    t.integer  "modification_id",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions", force: true do |t|
+    t.integer  "total",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

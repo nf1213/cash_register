@@ -13,7 +13,7 @@ Models:
 
   Modification
     item_id:integer
-    attribute_id:integer
+    mod_id:integer
 
   Transaction
     timestamps
@@ -27,7 +27,7 @@ Models:
 
   TransactionalModification
     transaction_item_id:integer
-    attribution_id:iteger
+    modification_id:integer
 
 
 (Extras)

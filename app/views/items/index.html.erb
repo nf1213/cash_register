@@ -1,3 +1,4 @@
 <% @items.each do |item| %>
-  <a href="<%= item_path(item.id) %>"><div class="item"><%= item.name %></div></a>
+  <% p = item.price / 100.00 %>
+  <a href="<%= item_path(item.id) %>"><div class="item"><%= item.name %><br><%= sprintf('$%.2f', p) %></div></a>
 <% end %>
