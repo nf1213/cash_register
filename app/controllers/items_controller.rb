@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
 
   def index
+    if Restaurant.count < 1
+      redirect_to new_restaurant_path
+    end
     @items = Item.all
   end
 

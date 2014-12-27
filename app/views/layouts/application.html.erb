@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if Restaurant.count > 0 %>
+  <h1><%= Restaurant.first.name %></h1>
+<% end %>
 
 <%= yield %>
 
