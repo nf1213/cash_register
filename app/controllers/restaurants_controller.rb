@@ -1,7 +1,4 @@
 class RestaurantsController < ApplicationController
-  def index
-    redirect_to items_path
-  end
 
   def new
     @restaurant = Restaurant.new
