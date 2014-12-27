@@ -12,4 +12,8 @@ FactoryGirl.define do
     item
     mod
   end
+
+  factory :restaurant do
+    name "Factory Girl's Food"
+  end
 end
