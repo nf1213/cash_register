@@ -16,4 +16,10 @@ FactoryGirl.define do
   factory :restaurant do
     name "Factory Girl's Food"
   end
+
+  factory :employee do
+    sequence(:name) {|n| "Nicole#{n}" }
+    password 333333
+    status 'Employee'
+  end
 end
