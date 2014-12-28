@@ -5,7 +5,8 @@ FactoryGirl.define do
   end
 
   factory :mod do
-    sequence(:name) {|n| "#{n}Cheese"}
+    sequence(:name) {|n| "#{n}Bacon"}
+    price 100
   end
 
   factory :modification do

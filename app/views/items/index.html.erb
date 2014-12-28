@@ -2,3 +2,9 @@
   <% p = item.price / 100.00 %>
   <a href="<%= item_path(item.id) %>"><div class="item"><%= item.name %><br><%= sprintf('$%.2f', p) %></div></a>
 <% end %>
+
+<% if current_employee %>
+  <% if current_employee.status == "Manager" %>
+    <br><a href="<%= static_pages_manager_functions_path %>">Manager Functions</a>
+  <% end %>
+<% end %>

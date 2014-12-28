@@ -63,4 +63,18 @@ feature 'User creates an item' do
     expect(page).to have_content "Name has already been taken"
   end
 
+  scenario 'user sees errors if price is not a number' do
+    employee = FactoryGirl.create(:employee, status: "Manager" )
+    sign_in(employee)
+
+    visit new_item_path
+
+    fill_in 'Name', with: @item.name
+    fill_in 'Price', with: "One million"
+
+    click_on "Create Item"
+
+    expect(page).to have_content "Price must be a number"
+  end
+
 end

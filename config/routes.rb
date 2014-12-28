@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'static_pages/manager_functions'
+
   resources :items do
     resources :attributes
   end
