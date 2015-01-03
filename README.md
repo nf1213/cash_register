@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/nf1213/cash_register.svg?branch=master)](https://travis-ci.org/nf1213/cash_register) [![Code Climate](https://codeclimate.com/github/nf1213/cash_register.png)](https://codeclimate.com/github/nf1213/cash_register) [![Coverage Status](https://coveralls.io/repos/nf1213/<cash_register>/badge.png)](https://coveralls.io/r/nf1213/cash_register)
+[![Build Status](https://travis-ci.org/nf1213/cash_register.svg?branch=master)](https://travis-ci.org/nf1213/cash_register) [![Code Climate](https://codeclimate.com/github/nf1213/cash_register.png)](https://codeclimate.com/github/nf1213/cash_register) [![Coverage Status](https://coveralls.io/repos/nf1213/cash_register/badge.png)](https://coveralls.io/r/nf1213/cash_register)
 
 README
 
