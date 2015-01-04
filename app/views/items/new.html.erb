@@ -1,17 +1,14 @@
-<% if current_employee.status != "Manager" %>
-  <p>You are not authorized for this</p>
-<% else %>
-  <%= form_for @item do |f| %>
+<%= form_for @item do |f| %>
   <% if @item.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
 
-    <ul>
-      <% @item.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+      <ul>
+        <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
 
   <div class="field">
@@ -27,5 +24,4 @@
   <div class="actions">
     <%= f.submit %>
   </div>
-  <% end %>
 <% end %>

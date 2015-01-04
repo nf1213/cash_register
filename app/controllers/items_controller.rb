@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
+  before_action :restaurant_exists?
+  before_action :authenticate
+  before_action :must_be_manager, only: [:new, :create]
 
   def index
-    if Restaurant.count < 1
-      redirect_to new_restaurant_path
-    end
     @items = Item.all
   end
 
@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to items_path
+      redirect_to root_path
     else
       render :new
     end
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
 
   def destroy
     Item.find(params[:id]).destroy
-    redirect_to items_path
+    redirect_to root_path
   end
 
   def item_params

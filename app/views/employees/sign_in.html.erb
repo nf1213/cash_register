@@ -1,0 +1,17 @@
+<h2>Please Sign In</h2>
+
+<%= form_for :employee, :url => {:action => 'sign_in_employee'} do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.select :name, Employee.names %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign in" %>
+  </div>
+<% end %>
