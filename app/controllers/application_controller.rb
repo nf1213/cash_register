@@ -20,4 +20,10 @@ class ApplicationController < ActionController::Base
   def current_employee
     Employee.find_by signed_in: true
   end
+
+  def must_be_manager
+    if current_employee.status != "Manager"
+      redirect_to root_path, notice: "You are not authorized for this"
+    end
+  end
 end
