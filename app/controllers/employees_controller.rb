@@ -1,6 +1,11 @@
 class EmployeesController < ApplicationController
   before_action :restaurant_exists?
-  before_action :must_be_manager, only: [:new, :create]
+  before_action :authenticate, only: [:new, :create, :index]
+  before_action :must_be_manager, only: [:new, :create, :index]
+
+  def index
+    @employees = Employee.all
+  end
 
   def new
     @employee = Employee.new
