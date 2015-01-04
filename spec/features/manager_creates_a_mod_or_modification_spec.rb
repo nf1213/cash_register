@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User creates a mod or modification' do
+feature 'Manager creates a mod or modification' do
 
   before(:each) do
     @restaurant = FactoryGirl.create(:restaurant)

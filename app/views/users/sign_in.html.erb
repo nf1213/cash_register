@@ -2,12 +2,12 @@
 
 <%= form_for @employee, :url => { :action => "sign_in_user" } |f| %>
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %><br>
     <%= f.select :name, Employee.all %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
+    <%= f.label :password %><br>
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 

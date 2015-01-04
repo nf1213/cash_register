@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User visits homepage' do
+feature 'Employee visits homepage' do
   before(:each) do
     @restaurant = FactoryGirl.create(:restaurant)
     @item = FactoryGirl.create(:item)
@@ -9,12 +9,12 @@ feature 'User visits homepage' do
   end
 
   scenario 'Sees the title of the website' do
-    visit items_path
+    visit root_path
     expect(page).to have_content @restaurant.name
   end
 
   scenario 'Sees the names of the items' do
-    visit items_path
+    visit root_path
     expect(page).to have_content @item.name
   end
 

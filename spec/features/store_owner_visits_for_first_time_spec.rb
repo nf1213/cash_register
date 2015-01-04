@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-feature 'User visits homepage for the first time' do
+feature 'Store owner visits homepage for the first time' do
   scenario 'Is welcomed and can create their restaurant' do
     restaurant = FactoryGirl.build(:restaurant)
-    visit items_path
+    visit root_path
+    
     expect(page).to have_content 'Welcome'
 
     fill_in "Name", with: restaurant.name

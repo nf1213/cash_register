@@ -5,13 +5,19 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     if Restaurant.count > 0
-      unless current_user
+      unless current_employee
         redirect_to employees_sign_in_path
       end
     end
   end
 
-  def current_user
+  def restaurant_exists?
+    unless Restaurant.count > 0
+      redirect_to new_restaurant_path
+    end
+  end
+
+  def current_employee
     Employee.find_by signed_in: true
   end
 end
