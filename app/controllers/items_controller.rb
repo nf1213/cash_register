@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :authenticate
 
   def index
     if Restaurant.count < 1

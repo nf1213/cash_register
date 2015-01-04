@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
 
   get 'static_pages/manager_functions'
+  get 'employees/sign_in'
+  post 'employees/sign_in_employee'
+  post 'employees/sign_out'
 
   resources :items do
     resources :attributes
   end
 
   resources :restaurants
+
+  resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
