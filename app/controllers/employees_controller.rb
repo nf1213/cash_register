@@ -2,6 +2,7 @@ class EmployeesController < ApplicationController
 
   def sign_in
     @employee = Employee.new
+    Employee.update_all(signed_in: false)
   end
 
   def sign_in_employee

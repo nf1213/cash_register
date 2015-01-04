@@ -9,7 +9,7 @@ feature 'User creates an item' do
 
   scenario 'user must be a manager' do
     employee = FactoryGirl.create(:employee)
-    sign_in(employee)
+    sign_in_as(employee)
 
     visit items_path
     expect(page).not_to have_content "Manager Functions"
@@ -19,7 +19,7 @@ feature 'User creates an item' do
 
   scenario 'user fills out the form with valid attributes' do
     employee = FactoryGirl.create(:employee, status: "Manager" )
-    sign_in(employee)
+    sign_in_as(employee)
 
     visit items_path
 
@@ -37,7 +37,7 @@ feature 'User creates an item' do
 
   scenario 'user sees errors if no info is provided' do
     employee = FactoryGirl.create(:employee, status: "Manager" )
-    sign_in(employee)
+    sign_in_as(employee)
 
     visit new_item_path
 
@@ -51,7 +51,7 @@ feature 'User creates an item' do
   scenario 'user sees errors if item already exists' do
     item = FactoryGirl.create(:item)
     employee = FactoryGirl.create(:employee, status: "Manager" )
-    sign_in(employee)
+    sign_in_as(employee)
 
     visit new_item_path
 

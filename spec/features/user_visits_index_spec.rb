@@ -4,6 +4,8 @@ feature 'User visits homepage' do
   before(:each) do
     @restaurant = FactoryGirl.create(:restaurant)
     @item = FactoryGirl.create(:item)
+    @employee = FactoryGirl.create(:employee)
+    sign_in_as(@employee)
   end
 
   scenario 'Sees the title of the website' do

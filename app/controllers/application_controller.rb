@@ -4,8 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def authenticate
-    unless current_user
-      redirect_to employees_sign_in_path
+    if Restaurant.count > 0
+      unless current_user
+        redirect_to employees_sign_in_path
+      end
     end
   end
 
