@@ -3,7 +3,7 @@ class SaleItemsController < ApplicationController
     sale_item = SaleItem.new(sale_item_params)
     sale_item.sale = current_sale
     if sale_item.save
-      redirect_to item_path(sale_item_params.item_id)
+      redirect_to item_path(params[:sale_item][:item_id])
     else
       redirect_to root_path
     end
