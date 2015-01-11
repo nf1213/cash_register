@@ -1,6 +1,13 @@
 <% @items.each do |item| %>
-  <% p = item.price / 100.00 %>
-  <a href="<%= item_path(item.id) %>"><div class="item"><%= item.name %><br><%= sprintf('$%.2f', p) %></div></a>
+  <%= form_for(:sale_item, url: sale_items_path) do |f| %>
+    <%= f.hidden_field :item_id, value: item.id %>
+    <% p = item.price / 100.00 %>
+    <%= f.submit "#{item.name}\n#{sprintf('$%.2f', p)}", id: "item" %>
+  <% end %>
+<% end %>
+
+<% @sale_items.each do |s_item| %>
+  <%= s_item.item.name %>
 <% end %>
 
 <% if current_employee %>

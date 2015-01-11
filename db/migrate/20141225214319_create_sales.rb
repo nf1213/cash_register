@@ -1,6 +1,6 @@
-class CreateTransactions < ActiveRecord::Migration
+class CreateSales < ActiveRecord::Migration
   def change
-    create_table :transactions do |t|
+    create_table :sales do |t|
       t.integer :total, default: 0
       t.integer :discount, default: 0
 

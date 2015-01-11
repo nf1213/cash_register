@@ -14,7 +14,7 @@
  *= require_self
  */
 
- .item, .mod {
+ #item, .mod {
    width: 75px;
    height: 50px;
    padding: 5px;
@@ -23,7 +23,7 @@
    display: inline-block;
  }
 
- .item {
+ #item {
    background-color: blue;
  }
 

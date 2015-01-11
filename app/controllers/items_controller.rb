@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
+    @sale_items = current_sale.sale_items
   end
 
   def show

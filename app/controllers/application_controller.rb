@@ -25,11 +25,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_transaction
-    if Transaction.last.current
-      return Transaction.last
+  def current_sale
+    if !Sale.any?
+      return Sale.create()
+    elsif Sale.last.current
+      return Sale.last
     else
-      return Transaction.create()
+      return Sale.create()
     end
   end
 end

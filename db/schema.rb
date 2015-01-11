@@ -54,22 +54,22 @@ ActiveRecord::Schema.define(version: 20150111214311) do
     t.datetime "updated_at"
   end
 
-  create_table "transaction_items", force: true do |t|
-    t.integer  "transaction_id",             null: false
-    t.integer  "item_id",                    null: false
-    t.integer  "discount",       default: 0
+  create_table "sale_item_modifications", force: true do |t|
+    t.integer  "sale_item_id",    null: false
+    t.integer  "modification_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "transactional_item_modifications", force: true do |t|
-    t.integer  "transaction_item_id", null: false
-    t.integer  "modification_id",     null: false
+  create_table "sale_items", force: true do |t|
+    t.integer  "sale_id",                null: false
+    t.integer  "item_id",                null: false
+    t.integer  "discount",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "transactions", force: true do |t|
+  create_table "sales", force: true do |t|
     t.integer  "total",      default: 0
     t.integer  "discount",   default: 0
     t.datetime "created_at"
