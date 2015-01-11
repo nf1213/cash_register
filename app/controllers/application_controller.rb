@@ -24,4 +24,12 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, notice: "You are not authorized for this"
     end
   end
+
+  def current_transaction
+    if Transaction.last.current
+      return Transaction.last
+    else
+      return Transaction.create()
+    end
+  end
 end
