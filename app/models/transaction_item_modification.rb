@@ -1,4 +1,4 @@
-class TransactionalModification < ActiveRecord::Base
+class TransactionItemModification < ActiveRecord::Base
   belongs_to :transaction_item
 
   validates_presence_of :transaction_item_id

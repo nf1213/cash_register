@@ -1,4 +1,5 @@
 class Modification < ActiveRecord::Base
-  belongs_to :item
-  belongs_to :mod
+  has_many :modification_options
+  has_many :items, through: :modification_options
+  validates_presence_of :name
 end
