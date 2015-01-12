@@ -2,8 +2,7 @@
 <html>
 <head>
   <title>CashRegister</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -18,6 +17,14 @@
 <%- end -%>
 
 <%= yield %>
+
+<%= javascript_include_tag 'application' %>
+<%= javascript_tag do %>
+$(function(){
+  $(document).foundation();
+});
+<% end %>
+<%= yield :extra_footer %>
 
 </body>
 </html>

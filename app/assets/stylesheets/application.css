@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
 
  #item, .mod {
@@ -29,4 +31,8 @@
 
  .mod {
    background-color: green;
+ }
+
+ .tab {
+   padding-left: 15px;
  }

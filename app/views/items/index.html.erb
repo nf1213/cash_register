@@ -1,18 +1,23 @@
-<% @items.each do |item| %>
-  <%= form_for(:sale_item, url: sale_items_path) do |f| %>
-    <%= f.hidden_field :item_id, value: item.id %>
-    <% price = item.price / 100.00 %>
-    <% price = "#{sprintf('$%.2f', price)}" %>
-    <%= f.submit "#{item.name}", id: "item" %>
+<div id="buttons">
+  <% @items.each do |item| %>
+    <%= form_for(:sale_item, url: sale_items_path) do |f| %>
+      <%= f.hidden_field :item_id, value: item.id %>
+      <%= f.submit "#{item.name}", id: "item" %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
-<% @sale_items.each do |s_item| %>
-  <%= s_item.item.name %>
-<% end %>
+<div id="sale">
+  <% @sale_items.each do |s_item| %>
+    <% price = s_item.item.price / 100.00 %>
+    <%= s_item.item.name %><span class='tab'><% "#{sprintf('$%.2f', price)}" %></span>
+  <% end %>
+</div>
 
-<% if current_employee.status == "Manager" %>
-  <br><%= link_to "Manager Functions", static_pages_manager_functions_path %>
-<% end %>
+<div id="footer">
+  <% if current_employee.status == "Manager" %>
+    <br><%= link_to "Manager Functions", static_pages_manager_functions_path %>
+  <% end %>
 
-<%= button_to "Sign Out", employees_sign_out_path %>
+  <%= button_to "Sign Out", employees_sign_out_path %>
+</div>
