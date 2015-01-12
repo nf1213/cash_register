@@ -13,9 +13,25 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name, "Restaurant Name"%><br>
     <%= f.text_field :name %>
   </div>
+
+  <%= f.fields_for :employees, Employee.new do |ff| %>
+    <div class="field">
+      <%= ff.label :name, "Store Owner Name:" %>
+      <%= ff.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= ff.label :password %>
+      <%= ff.text_field :password %>
+    </div>
+    
+    <div class="field">
+      <%= ff.hidden_field :status, value: "Manager" %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
