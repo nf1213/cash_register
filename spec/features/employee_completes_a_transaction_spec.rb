@@ -17,5 +17,8 @@ feature 'Employee completes a transaction' do
 
     total = (@item.price + @item.price) / 100.00
     expect(page).to have_content("Total: #{sprintf('$%.2f', total)}")
+
+    click_on "Cash Out"
+    expect(page).to have_content("Total: $0.00")
   end
 end
