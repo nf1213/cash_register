@@ -4,10 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def authenticate
-    if Restaurant.count > 0
-      unless current_employee
-        redirect_to employees_sign_in_path
-      end
+    unless current_employee
+      redirect_to employees_sign_in_path
     end
   end
 
@@ -24,6 +22,16 @@ class ApplicationController < ActionController::Base
   def must_be_manager
     if current_employee.status != "Manager"
       redirect_to root_path, notice: "You are not authorized for this"
+    end
+  end
+
+  def current_sale
+    if !Sale.any?
+      return Sale.create()
+    elsif Sale.last.current
+      return Sale.last
+    else
+      return Sale.create()
     end
   end
 end

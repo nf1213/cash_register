@@ -31,7 +31,7 @@ feature 'Manager creates an item' do
 
     click_on "Create Item"
 
-    expect(page).to have_content @item.name
+    expect(page).to have_item_button @item
 
   end
 

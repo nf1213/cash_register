@@ -1,6 +1,6 @@
-class CreateMods < ActiveRecord::Migration
+class CreateModifications < ActiveRecord::Migration
   def change
-    create_table :mods do |t|
+    create_table :modifications do |t|
       t.string :name, null: false
       t.integer :price
 

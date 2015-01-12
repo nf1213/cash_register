@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :restaurants
 
   resources :employees
+
+  resources :sale_items, only: [:create]
+  resources :sales, only: [:update]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
