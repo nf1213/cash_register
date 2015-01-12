@@ -17,3 +17,10 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+// $('#cash_out').click(function(){
+//   var input = prompt("Cash given:");
+//   var given = parseInt(given);
+//   var give = 30 - given;
+//   alert("Cash to give: " + give);
+// });

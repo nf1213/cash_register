@@ -22,8 +22,10 @@
    padding: 5px;
    margin: 5px;
    color: white;
-   display: inline-block;
- }
+   display: inline;
+   font-size: 12px;
+   float: left;
+}
 
  #item {
    background-color: blue;
@@ -35,4 +37,15 @@
 
  .tab {
    padding-left: 15px;
+ }
+
+ #sale-items {
+   float: left;
+ }
+ #sale-item {
+   float:left;
+ }
+
+ #sale-price {
+   float:right;
  }

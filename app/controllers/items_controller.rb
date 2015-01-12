@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    @sale_items = current_sale.sale_items
+    @sale = current_sale
   end
 
   def show
