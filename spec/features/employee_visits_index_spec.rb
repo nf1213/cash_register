@@ -15,7 +15,7 @@ feature 'Employee visits homepage' do
 
   scenario 'Sees the names of the items' do
     visit root_path
-    expect(page).to have_content @item.name
+    expect(page).to have_item_button @item
   end
 
 end
