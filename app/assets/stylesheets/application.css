@@ -50,3 +50,7 @@
  #sale-price {
    float:right;
  }
+
+ #hidden_total {
+   color: white;
+ }
