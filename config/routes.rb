@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'employees/sign_in'
   post 'employees/sign_in_employee'
   post 'employees/sign_out'
+  get '/modification_options/inverse_new'
+  post '/modification_options/inverse_create'
 
   resources :items
 

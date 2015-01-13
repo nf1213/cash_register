@@ -1,4 +1,8 @@
-<% @item.modifications.each do |mod| %>
-  <div class="mod"><%= mod.name %></div>
-<% end %>
-<br><a href="<%= root_path %>">Done</a>
+<div class="row">
+  <div id="buttons" class="columns small-8">
+    <% @item.modifications.each do |mod| %>
+      <div class="mod"><%= mod.name %></div>
+    <% end %>
+    <br><a href="<%= root_path %>">Done</a>
+  </div>
+</div>

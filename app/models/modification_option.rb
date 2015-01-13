@@ -11,4 +11,8 @@ class ModificationOption < ActiveRecord::Base
   def modification_ids
     nil
   end
+
+  def item_ids
+    nil
+  end
 end

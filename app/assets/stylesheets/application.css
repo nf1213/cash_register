@@ -36,21 +36,20 @@
    background-color: green;
  }
 
- .tab {
-   padding-left: 15px;
- }
-
- #sale-items {
-   float: left;
- }
- #sale-item {
-   float:left;
- }
-
- #sale-price {
-   float:right;
- }
-
  #hidden_total {
    color: white;
  }
+
+body {
+  background-color: #96CAEB;
+}
+
+.price {
+  border-top: 1px solid black;
+  padding-bottom: 5px;
+}
+
+.sale-items, .sale-prices {
+  background-color: white;
+  padding-bottom: 5px;
+}
