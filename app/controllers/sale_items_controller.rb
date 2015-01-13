@@ -9,8 +9,6 @@ class SaleItemsController < ApplicationController
     sale_item.sale.update(total: update_total )
     if sale_item.save
       redirect_to item_path(params[:sale_item][:item_id])
-    else
-      redirect_to root_path
     end
   end
 

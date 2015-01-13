@@ -25,20 +25,20 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit
-    @item = Item.find(params[:id])
-  end
-
-  def update
-    @item = Item.find(params[:id])
-    @item.update(item_params)
-    redirect_to @item
-  end
-
-  def destroy
-    Item.find(params[:id]).destroy
-    redirect_to root_path
-  end
+  # def edit
+  #   @item = Item.find(params[:id])
+  # end
+  #
+  # def update
+  #   @item = Item.find(params[:id])
+  #   @item.update(item_params)
+  #   redirect_to @item
+  # end
+  #
+  # def destroy
+  #   Item.find(params[:id]).destroy
+  #   redirect_to root_path
+  # end
 
   def item_params
     params.require(:item).permit(:name, :price)

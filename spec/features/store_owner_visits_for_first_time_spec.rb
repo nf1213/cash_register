@@ -16,4 +16,14 @@ feature 'Store owner visits homepage for the first time' do
     expect(page).to have_content restaurant.name
     expect(page).to have_content "Please Sign In"
   end
+
+  scenario 'Does not fill out the form' do
+    visit root_path
+
+    click_on "Create Restaurant"
+
+    expect(page).to have_content "Employees name can't be blank"
+    expect(page).to have_content "Employees password can't be blank"
+    expect(page).to have_content "Name can't be blank"
+  end
 end

@@ -40,10 +40,4 @@ class ModificationOptionsController < ApplicationController
       redirect_to static_pages_manager_functions_path, notice: "Modification Options Saved"
     end
   end
-
-  private
-
-  def modification_option_params
-    params.require(:modification_option).permit(:item, :modification_id)
-  end
 end
