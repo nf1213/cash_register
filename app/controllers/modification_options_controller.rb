@@ -31,7 +31,7 @@ class ModificationOptionsController < ApplicationController
     items.delete("")
     modification = params[:modification_option][:modification]
     if items.empty?
-      redirect_to modification_options_inverse_new_path, notice: "Please select some items to this modification to"
+      redirect_to modification_options_inverse_new_path, notice: "Please select some items to add this modification to"
     else
       items.each do |i|
         @modification_option = ModificationOption.new(item_id: i, modification_id: modification)
