@@ -1,4 +1,8 @@
 class ModificationsController < ApplicationController
+  before_action :restaurant_exists?
+  before_action :authenticate
+  before_action :must_be_manager
+
   def new
     @modification = Modification.new
   end

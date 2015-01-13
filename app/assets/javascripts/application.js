@@ -22,7 +22,7 @@ $('#cash_out').click(function(){
   var COINS_AND_BILLS = [2000, 1000, 500, 100, 25, 10, 5, 1];
   var give = [];
   var total = parseInt($('#hidden_total').text());
-  var given = parseInt(prompt("Cash given:"));
+  var given = parseInt(prompt("Cash given:")) * 100;
   var remainder = given - total;
   while(remainder > 0) {
     for(var i = 0; i < COINS_AND_BILLS.length; i++) {

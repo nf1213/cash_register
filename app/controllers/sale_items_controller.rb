@@ -1,4 +1,7 @@
 class SaleItemsController < ApplicationController
+  before_action :restaurant_exists?
+  before_action :authenticate
+
   def create
     sale_item = SaleItem.new(sale_item_params)
     sale_item.sale = current_sale
