@@ -17,7 +17,8 @@
     <% total_price = @sale.total / 100.00 %>
     <div id="sale-item" class="column small-2">Total:</div>
     <div id="sale-price" class="columns small-2 tab"><%= "#{sprintf('$%.2f', total_price)}" %></div><br>
-    <div id="sale-item" class="columns small-2"><%= button_to "Cash Out", sale_path(@sale), method: :patch %></div>
+    <div id="sale-item" class="columns small-2"><%= button_to "Cash Out", sale_path(@sale), method: :patch, id: 'cash_out' %></div>
+    <div id="hidden_total"><%= @sale.total %></div>
   </div>
 </div>
 

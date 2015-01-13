@@ -21,14 +21,15 @@ $(function(){ $(document).foundation(); });
 $('#cash_out').click(function(){
   var COINS_AND_BILLS = [2000, 1000, 500, 100, 25, 10, 5, 1];
   var give = [];
-  var total = parseInt(prompt("Total:"));
+  var total = parseInt($('#hidden_total').text());
   var given = parseInt(prompt("Cash given:"));
   var remainder = given - total;
   while(remainder > 0) {
     for(var i = 0; i < COINS_AND_BILLS.length; i++) {
       var value = COINS_AND_BILLS[i];
       if(remainder >= value) {
-        give.push(value);
+        v = value / 100.00
+        give.push("$" + v.toFixed(2));
         remainder = remainder - value;
         break;
       }
