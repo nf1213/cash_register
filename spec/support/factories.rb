@@ -4,14 +4,14 @@ FactoryGirl.define do
     price 1000
   end
 
-  factory :mod do
+  factory :modification do
     sequence(:name) {|n| "#{n}Bacon"}
     price 100
   end
 
-  factory :modification do
+  factory :modification_option do
     item
-    mod
+    modification
   end
 
   factory :restaurant do

@@ -7,7 +7,7 @@
 </head>
 <body>
 <% if Restaurant.count > 0 %>
-  <h1><%= Restaurant.first.name %></h1>
+  <a href='<%= root_path %>'><h1><%= Restaurant.first.name %></h1></a>
 <% end %>
 
 <%- flash.each do |key, value| -%>

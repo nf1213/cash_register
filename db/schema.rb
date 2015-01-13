@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112183400) do
+ActiveRecord::Schema.define(version: 20150113201034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,12 +42,16 @@ ActiveRecord::Schema.define(version: 20150112183400) do
     t.datetime "updated_at"
   end
 
+  add_index "modification_options", ["item_id", "modification_id"], name: "index_modification_options_on_item_id_and_modification_id", unique: true, using: :btree
+
   create_table "modifications", force: true do |t|
     t.string   "name",       null: false
     t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "modifications", ["name"], name: "index_modifications_on_name", unique: true, using: :btree
 
   create_table "restaurants", force: true do |t|
     t.string   "name"
