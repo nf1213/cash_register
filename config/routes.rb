@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :sale_items, only: [:create]
   resources :sales, only: [:update]
   resources :modifications, only: [:create, :new]
+  resources :modification_options, only: [:new, :create]
 
   root 'items#index'
 end

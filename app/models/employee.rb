@@ -10,7 +10,6 @@ class Employee < ActiveRecord::Base
     Employee.all.each do |e|
       names << e.name
     end
-
     names
   end
 end

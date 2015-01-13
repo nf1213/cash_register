@@ -1,0 +1,26 @@
+<%= form_for @modification_option do |f| %>
+  <% if @modification_option.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@modification_option.errors.count, "error") %> prohibited this modification option from being saved:</h2>
+      <ul>
+        <% @modification_option.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :item %>
+    <%= f.select :item,  Item.all.collect {|i| [ i.name, i.id ] } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :modification, "Modifications" %>
+    <%= f.collection_check_boxes(:modification_ids, Modification.all, :id, :name) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
