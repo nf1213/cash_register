@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :restaurant_exists?
-  before_action :authenticate, only: [:new, :create, :index]
-  before_action :must_be_manager, only: [:new, :create, :index, :destroy]
+  before_action :authenticate, only: [:new, :create, :index, :destroy, :edit, :update]
+  before_action :must_be_manager, only: [:new, :create, :index, :destroy, :edit, :update]
 
   def index
     @employees = Employee.all
@@ -51,6 +51,7 @@ class EmployeesController < ApplicationController
     if Employee.find_by name: name, password: password
       user = Employee.find_by name: name, password: password
       user.update(signed_in: true)
+      Shift.create(employee: user, clock_in: Time.now)
       redirect_to root_path, notice: "Login success"
     else
       redirect_to employees_sign_in_path, notice: "Invalid credentials"
@@ -58,6 +59,7 @@ class EmployeesController < ApplicationController
   end
 
   def sign_out
+    current_shift.update(clock_out: Time.now)
     current_employee.update(signed_in: false)
     redirect_to employees_sign_in_path, notice: "Signed out"
   end

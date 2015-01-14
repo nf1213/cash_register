@@ -34,4 +34,10 @@ class ApplicationController < ActionController::Base
       return Sale.create()
     end
   end
+
+  def current_shift
+    if current_employee
+      return Shift.last
+    end
+  end
 end
