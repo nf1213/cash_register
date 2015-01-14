@@ -16,7 +16,7 @@
 
  */
 
- #item, .mod {
+ #item, .mod, #manager {
    width: 75px;
    height: 50px;
    padding: 5px;
@@ -34,6 +34,11 @@
 
  .mod {
    background-color: green;
+ }
+
+ #manager {
+   background-color: magenta;
+   height: 100px;
  }
 
  #hidden_total {
