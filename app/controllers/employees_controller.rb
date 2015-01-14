@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :restaurant_exists?
   before_action :authenticate, only: [:new, :create, :index]
-  before_action :must_be_manager, only: [:new, :create, :index]
+  before_action :must_be_manager, only: [:new, :create, :index, :destroy]
 
   def index
     @employees = Employee.all
@@ -20,10 +20,30 @@ class EmployeesController < ApplicationController
     end
   end
 
-  def sign_in
-    @employee = Employee.new
-    Employee.update_all(signed_in: false)
+  def destroy
+    Employee.find(params[:id]).destroy
+    redirect_to employees_path, notice: "Employee deleted"
   end
+
+  def edit
+    @employee = Employee.find(params[:id])
+  end
+
+  def update
+    @employee = Employee.find(params[:id])
+    salary = params[:employee][:salary].to_f * 100
+    if salary < 800
+      redirect_to edit_employee_path(@employee), notice: "Salary must be a number higher than $8.00"
+    else
+      @employee.update(salary: salary)
+      redirect_to employees_path, notice: "Salary updated"
+    end
+  end
+
+  # def sign_in
+  #   @employee = Employee.new
+  #   Employee.update_all(signed_in: false)
+  # end
 
   def sign_in_employee
     name = params[:employee][:name]
@@ -45,7 +65,7 @@ class EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:employee).permit(:name, :password, :status)
+    params.require(:employee).permit(:name, :password, :status, :salary)
   end
 
 end
