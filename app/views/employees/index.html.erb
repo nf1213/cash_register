@@ -2,8 +2,8 @@
   <p><%= e.name %>
     <% unless e == current_employee %>
       <%= button_to "Delete", employee_path(e), method: :delete %>
-      <%= button_to "Update", edit_employee_path(e), method: :get %>
     <% end %>
+    <%= button_to "Update", edit_employee_path(e), method: :get %>
   </p>
   <ul>
    <li>Status: <%= e.status %></li>
