@@ -52,23 +52,14 @@ class EmployeesController < ApplicationController
     user = Employee.find_by name: name, password: password
     if user
       session[:user_id] = user.id
-      if user.current_shift
-        redirect_to root_path, notice: "Login success"
-      else
-        clock_in(user)
-        redirect_to root_path, notice: "Login success, Clocked in"
-      end
+      redirect_to root_path, notice: "Login success"
     else
       redirect_to employees_sign_in_path, notice: "Invalid credentials"
     end
   end
 
-  def sign_out_employee(employee)
-    session[:user_id] = nil
-  end
-
   def sign_out
-    sign_out_employee(current_employee)
+    session[:user_id] = nil
     redirect_to employees_sign_in_path, notice: "Signed out"
   end
 
@@ -89,8 +80,8 @@ class EmployeesController < ApplicationController
         clock_in(employee)
         redirect_to employees_clock_in_out_path, notice: "Clocked in"
       else
-          sign_out_employee(employee)
-          redirect_to employees_clock_in_out_path, notice: "Clocked out"
+        clock_out(employee)
+        redirect_to employees_clock_in_out_path, notice: "Clocked out"
       end
     else
       redirect_to employees_clock_in_out_path, notice: "Invalid credentials"

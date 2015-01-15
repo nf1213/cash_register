@@ -10,9 +10,14 @@
   <a href='<%= root_path %>'><h1><%= Restaurant.first.name %></h1></a>
 <% end %>
 <% if current_employee %>
-  <%= "Signed in as #{current_employee.name}" %>
+  <% if current_employee.current_shift %>
+    <% clocked_in = "Clocked in" %>
+  <% else %>
+    <% clocked_in = "Not clocked in" %>
+  <% end %>
+  <%= "Signed in as #{current_employee.name}, #{clocked_in}" %>
 <% end %>
-<%= link_to "Clock In/Out |", employees_clock_in_out_path %> <%= link_to "Main", root_path %><br>
+<br><%= link_to "Clock In/Out |", employees_clock_in_out_path %> <%= link_to "Main", root_path %><br>
 
 <%- flash.each do |key, value| -%>
   <div class="flash flash-<%= key %>">
