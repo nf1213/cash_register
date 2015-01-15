@@ -1,0 +1,15 @@
+<%= form_for :employee, :url => {:action => 'clock'} do |f| %>
+<div class="field">
+  <%= f.label :name %><br />
+  <%= f.select :name, Employee.names %>
+</div>
+
+<div class="field">
+  <%= f.label :password %><br />
+  <%= f.password_field :password, autocomplete: "off" %>
+</div>
+
+<div class="actions">
+  <%= f.submit "Clock in/out" %>
+</div>
+<% end %>

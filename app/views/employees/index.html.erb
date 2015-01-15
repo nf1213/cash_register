@@ -1,5 +1,10 @@
 <% @employees.each do |e| %>
-  <p><%= e.name %></p>
+  <p><%= e.name %>
+    <% unless e == current_employee %>
+      <%= button_to "Delete", employee_path(e), method: :delete %>
+    <% end %>
+    <%= button_to "Update", edit_employee_path(e), method: :get %>
+  </p>
   <ul>
    <li>Status: <%= e.status %></li>
    <li>password: <%= e.password %></li>

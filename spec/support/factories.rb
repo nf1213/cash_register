@@ -22,5 +22,6 @@ FactoryGirl.define do
     sequence(:name) {|n| "Nicole#{n}" }
     password 333333
     status 'Employee'
+    salary 800
   end
 end

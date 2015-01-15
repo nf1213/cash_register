@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #change to current employee's sale
   def current_sale
     if !Sale.any?
       return Sale.create()
