@@ -36,6 +36,7 @@ class EmployeesController < ApplicationController
       redirect_to edit_employee_path(@employee), notice: "Salary must be a number higher than $8.00"
     else
       @employee.update(salary: salary)
+      @employee.update(status: params[:employee][:status])
       redirect_to employees_path, notice: "Salary updated"
     end
   end
@@ -51,7 +52,12 @@ class EmployeesController < ApplicationController
     user = Employee.find_by name: name, password: password
     if user
       user.update(signed_in: true)
-      redirect_to root_path, notice: "Login success"
+      if user.current_shift
+        redirect_to root_path, notice: "Login success"
+      else
+        clock_in(user)
+        redirect_to root_path, notice: "Login success, Clocked in"
+      end
     else
       redirect_to employees_sign_in_path, notice: "Invalid credentials"
     end
@@ -77,8 +83,14 @@ class EmployeesController < ApplicationController
     if employee
       if !employee.current_shift
         clock_in(employee)
+        redirect_to employees_clock_in_out_path, notice: "Clocked in"
       else
-        clock_out(employee)
+        if employee.signed_in
+          redirect_to employees_clock_in_out_path, notice: "Please sign out first"
+        else
+          clock_out(employee)
+          redirect_to employees_clock_in_out_path, notice: "Clocked out"
+        end
       end
     else
       redirect_to employees_clock_in_out_path, notice: "Invalid credentials"
@@ -88,14 +100,12 @@ class EmployeesController < ApplicationController
   def clock_in(employee)
     shift = Shift.create(employee: employee, clock_in: Time.now)
     employee.update(current_shift: shift.id)
-    redirect_to employees_clock_in_out_path, notice: "Clocked in"
   end
 
   def clock_out(employee)
     shift = Shift.find(employee.current_shift)
     shift.update(employee: employee, clock_out: Time.now)
     employee.update(current_shift: nil)
-    redirect_to employees_clock_in_out_path, notice: "Clocked out"
   end
 
   private

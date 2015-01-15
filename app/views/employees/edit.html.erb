@@ -16,6 +16,11 @@
     <%= f.number_field :salary, value: "#{sprintf('%.2f', (@employee.salary / 100.00))}", :step => 0.25 %>
   </div>
 
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.select :status, ["Manager", "Employee"] %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
