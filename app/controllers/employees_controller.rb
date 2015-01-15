@@ -48,10 +48,9 @@ class EmployeesController < ApplicationController
   def sign_in_employee
     name = params[:employee][:name]
     password = params[:employee][:password]
-    if Employee.find_by name: name, password: password
-      user = Employee.find_by name: name, password: password
+    user = Employee.find_by name: name, password: password
+    if user
       user.update(signed_in: true)
-      Shift.create(employee: user, clock_in: Time.now)
       redirect_to root_path, notice: "Login success"
     else
       redirect_to employees_sign_in_path, notice: "Invalid credentials"
@@ -59,13 +58,44 @@ class EmployeesController < ApplicationController
   end
 
   def sign_out
-    current_shift.update(clock_out: Time.now)
     current_employee.update(signed_in: false)
     redirect_to employees_sign_in_path, notice: "Signed out"
   end
 
   def payroll
     @employees = Employee.all
+  end
+
+  def clock_in_out
+
+  end
+
+  def clock
+    name = params[:employee][:name]
+    password = params[:employee][:password]
+    employee = Employee.find_by name: name, password: password
+    if employee
+      if !employee.current_shift
+        clock_in(employee)
+      else
+        clock_out(employee)
+      end
+    else
+      redirect_to employees_clock_in_out_path, notice: "Invalid credentials"
+    end
+  end
+
+  def clock_in(employee)
+    shift = Shift.create(employee: employee, clock_in: Time.now)
+    employee.update(current_shift: shift.id)
+    redirect_to employees_clock_in_out_path, notice: "Clocked in"
+  end
+
+  def clock_out(employee)
+    shift = Shift.find(employee.current_shift)
+    shift.update(employee: employee, clock_out: Time.now)
+    employee.update(current_shift: nil)
+    redirect_to employees_clock_in_out_path, notice: "Clocked out"
   end
 
   private

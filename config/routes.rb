@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/modification_options/inverse_new'
   post '/modification_options/inverse_create'
   get 'employees/payroll'
+  get 'employees/clock_in_out'
+  post 'employees/clock'
 
   resources :items
 

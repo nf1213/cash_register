@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #change to current employee's sale
   def current_sale
     if !Sale.any?
       return Sale.create()
@@ -32,12 +33,6 @@ class ApplicationController < ActionController::Base
       return Sale.last
     else
       return Sale.create()
-    end
-  end
-
-  def current_shift
-    if current_employee
-      return Shift.last
     end
   end
 end
