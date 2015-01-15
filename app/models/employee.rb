@@ -1,6 +1,8 @@
 class Employee < ActiveRecord::Base
   belongs_to :restaurant
   has_many :shifts
+  has_many :sales
+  
   validates_presence_of :name
   validates_uniqueness_of :name
   validates_presence_of :password

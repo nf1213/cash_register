@@ -16,7 +16,9 @@ class ApplicationController < ActionController::Base
   end
 
   def current_employee
-    Employee.find_by signed_in: true
+    if session[:user_id]
+      Employee.find(session[:user_id])
+    end
   end
 
   def must_be_manager
@@ -27,12 +29,14 @@ class ApplicationController < ActionController::Base
 
   #change to current employee's sale
   def current_sale
-    if !Sale.any?
-      return Sale.create()
-    elsif Sale.last.current
-      return Sale.last
-    else
-      return Sale.create()
+    if current_employee
+      if !current_employee.current_sale
+        sale = Sale.create(employee: current_employee)
+        current_employee.update(current_sale: sale.id )
+        sale
+      else
+        Sale.find(current_employee.current_sale)
+      end
     end
   end
 end

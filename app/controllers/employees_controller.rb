@@ -37,7 +37,7 @@ class EmployeesController < ApplicationController
     else
       @employee.update(salary: salary)
       @employee.update(status: params[:employee][:status])
-      redirect_to employees_path, notice: "Salary updated"
+      redirect_to employees_path, notice: "Employee updated"
     end
   end
 
@@ -51,7 +51,7 @@ class EmployeesController < ApplicationController
     password = params[:employee][:password]
     user = Employee.find_by name: name, password: password
     if user
-      user.update(signed_in: true)
+      session[:user_id] = user.id
       if user.current_shift
         redirect_to root_path, notice: "Login success"
       else
@@ -63,8 +63,12 @@ class EmployeesController < ApplicationController
     end
   end
 
+  def sign_out_employee(employee)
+    session[:user_id] = nil
+  end
+
   def sign_out
-    current_employee.update(signed_in: false)
+    sign_out_employee(current_employee)
     redirect_to employees_sign_in_path, notice: "Signed out"
   end
 
@@ -85,12 +89,8 @@ class EmployeesController < ApplicationController
         clock_in(employee)
         redirect_to employees_clock_in_out_path, notice: "Clocked in"
       else
-        if employee.signed_in
-          redirect_to employees_clock_in_out_path, notice: "Please sign out first"
-        else
-          clock_out(employee)
+          sign_out_employee(employee)
           redirect_to employees_clock_in_out_path, notice: "Clocked out"
-        end
       end
     else
       redirect_to employees_clock_in_out_path, notice: "Invalid credentials"

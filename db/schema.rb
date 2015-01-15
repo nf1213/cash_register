@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150115153522) do
+ActiveRecord::Schema.define(version: 20150115191955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20150115153522) do
     t.integer  "restaurant_id"
     t.integer  "salary",        default: 800
     t.integer  "current_shift"
+    t.integer  "current_sale"
   end
 
   create_table "items", force: true do |t|
@@ -77,11 +78,12 @@ ActiveRecord::Schema.define(version: 20150115153522) do
   end
 
   create_table "sales", force: true do |t|
-    t.integer  "total",      default: 0
-    t.integer  "discount",   default: 0
+    t.integer  "total",       default: 0
+    t.integer  "discount",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "current",    default: true
+    t.boolean  "current",     default: true
+    t.integer  "employee_id",                null: false
   end
 
   create_table "shifts", force: true do |t|

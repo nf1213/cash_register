@@ -9,6 +9,9 @@
 <% if Restaurant.count > 0 %>
   <a href='<%= root_path %>'><h1><%= Restaurant.first.name %></h1></a>
 <% end %>
+<% if current_employee %>
+  <%= "Signed in as #{current_employee.name}" %>
+<% end %>
 <%= link_to "Clock In/Out |", employees_clock_in_out_path %> <%= link_to "Main", root_path %><br>
 
 <%- flash.each do |key, value| -%>
