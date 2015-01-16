@@ -5,4 +5,6 @@ class SaleItem < ActiveRecord::Base
 
   validates_presence_of :sale_id
   validates_presence_of :item_id
+  validates_presence_of :name
+  validates_presence_of :price
 end
