@@ -7,6 +7,7 @@
   </p>
   <ul>
    <li>Status: <%= e.status %></li>
-   <li>password: <%= e.password %></li>
+   <li>Date of Hire: <%= e.created_at.strftime("%m/%d/%Y") %></li>
+   <li>Password: <%= e.password %></li>
   </ul>
 <% end %>

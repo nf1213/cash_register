@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'employees/payroll'
   get 'employees/clock_in_out'
   post 'employees/clock'
+  get 'items/edit_index'
 
   resources :items
 
