@@ -10,14 +10,14 @@
 
   <div class="columns small-2 sale-items">
     <% @sale.sale_items.each do |s_item| %>
-      <div><%= s_item.item.name %></div>
+      <div><%= s_item.name %></div>
     <% end %>
     <div id="hidden_total"><%= @sale.total %></div>
     <%= button_to "Cash Out", sale_path(@sale), method: :patch, id: 'cash_out' %>
   </div>
   <div class="columns small-2 sale-prices">
     <% @sale.sale_items.each do |s_item| %>
-      <% price = s_item.item.price / 100.00 %>
+      <% price = s_item.price / 100.00 %>
       <div><%= "#{sprintf('$%.2f', price)}" %></div>
     <% end %>
     <% total_price = @sale.total / 100.00 %>
