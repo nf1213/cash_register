@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :employees
 
-  resources :sale_items, only: [:create]
+  resources :sale_items, only: [:create, :destroy]
   resources :sales, only: [:update]
   resources :modifications, except: [:show]
   resources :modification_options, only: [:new, :create]

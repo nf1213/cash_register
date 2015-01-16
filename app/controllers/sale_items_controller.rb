@@ -12,4 +12,9 @@ class SaleItemsController < ApplicationController
       redirect_to item_path(item)
     end
   end
+
+  def destroy
+    @sale_item = SaleItem.find(params[:id]).destroy
+    redirect_to root_path, notice: "Item voided"
+  end
 end

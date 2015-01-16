@@ -7,10 +7,9 @@
       <% end %>
     <% end %>
   </div>
-
   <div class="columns small-2 sale-items">
     <% @sale.sale_items.each do |s_item| %>
-      <div><%= s_item.name %></div>
+      <div><%= s_item.name %> <%= link_to "x", sale_item_path(s_item), method: :delete %></div>
     <% end %>
     <div id="hidden_total"><%= @sale.total %></div>
     <%= button_to "Cash Out", sale_path(@sale), method: :patch, id: 'cash_out' %>
