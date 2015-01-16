@@ -14,7 +14,10 @@ class SaleItemsController < ApplicationController
   end
 
   def destroy
-    @sale_item = SaleItem.find(params[:id]).destroy
+    @sale_item = SaleItem.find(params[:id])
+    update_total = @sale_item.sale.total - @sale_item.price
+    @sale_item.sale.update(total: update_total )
+    @sale_item.destroy
     redirect_to root_path, notice: "Item voided"
   end
 end
