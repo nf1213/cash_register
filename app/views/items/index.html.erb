@@ -7,20 +7,22 @@
       <% end %>
     <% end %>
   </div>
-  <div class="columns small-2 sale-items">
+  <div class="columns small-4 sale-items">
     <% @sale.sale_items.each do |s_item| %>
-      <div><%= s_item.name %> <%= link_to "x", sale_item_path(s_item), method: :delete %></div>
-    <% end %>
-    <div id="hidden_total"><%= @sale.total %></div>
-    <%= button_to "Cash Out", sale_path(@sale), method: :patch, id: 'cash_out' %>
-  </div>
-  <div class="columns small-2 sale-prices">
-    <% @sale.sale_items.each do |s_item| %>
-      <% price = s_item.price / 100.00 %>
-      <div><%= "#{sprintf('$%.2f', price)}" %></div>
+      <div><%= s_item.name %> <%= link_to "x", sale_item_path(s_item), method: :delete %>
+        <% price = s_item.price / 100.00 %>
+        <div class="price"><%= "#{sprintf('$%.2f', price)}" %></div>
+        <ul>
+          <% s_item.sale_item_modifications.each do |sim| %>
+            <li><%= sim.modification.name %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
     <% total_price = @sale.total / 100.00 %>
-    <p class="price">Total: <%= "#{sprintf('$%.2f', total_price)}" %></p>
+    <p class="total price">Total: <%= "#{sprintf('$%.2f', total_price)}" %></p>
+    <div id="hidden_total"><%= @sale.total %></div>
+    <%= button_to "Cash Out", sale_path(@sale), method: :patch, id: 'cash_out' %>
   </div>
 </div>
 

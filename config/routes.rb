@@ -11,16 +11,17 @@ Rails.application.routes.draw do
   post 'employees/clock'
   get 'items/edit_index'
 
-  resources :items
+  resources :items, except: [:show]
 
   resources :restaurants
 
   resources :employees
 
-  resources :sale_items, only: [:create, :destroy]
+  resources :sale_items, only: [:create, :destroy, :show]
   resources :sales, only: [:update]
   resources :modifications, except: [:show]
   resources :modification_options, only: [:new, :create]
+  resources :sale_item_modifications, only: [:new, :create]
 
   root 'items#index'
 end

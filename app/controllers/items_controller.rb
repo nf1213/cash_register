@@ -8,10 +8,6 @@ class ItemsController < ApplicationController
     @sale = current_sale
   end
 
-  def show
-    @item = Item.find(params[:id])
-  end
-
   def new
     @item = Item.new
   end

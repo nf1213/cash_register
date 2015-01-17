@@ -9,7 +9,7 @@ class SaleItemsController < ApplicationController
     update_total = sale_item.sale.total + sale_item.price
     sale_item.sale.update(total: update_total )
     if sale_item.save
-      redirect_to item_path(item)
+      redirect_to sale_item_path(sale_item)
     end
   end
 
@@ -19,5 +19,10 @@ class SaleItemsController < ApplicationController
     @sale_item.sale.update(total: update_total )
     @sale_item.destroy
     redirect_to root_path, notice: "Item voided"
+  end
+
+  def show
+    @sale_item = SaleItem.find(params[:id])
+    @sale = current_sale
   end
 end
