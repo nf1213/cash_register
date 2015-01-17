@@ -29,10 +29,6 @@ feature "Manager creates modification options" do
 
     click_on "Create Options"
     expect(page).to have_content "Modification Options Saved"
-
-    visit item_path(@item)
-    expect(page).to have_content @modification.name
-    expect(page).to have_content @modification2.name
   end
 
   scenario 'does not provide any modifications to add' do
@@ -56,11 +52,6 @@ feature "Manager creates modification options" do
 
     click_on "Create Options"
     expect(page).to have_content "Modification Options Saved"
-
-    visit item_path(@item)
-    expect(page).to have_content @modification.name
-    visit item_path(@item2)
-    expect(page).to have_content @modification.name
   end
 
   scenario 'does not provide any items to add modifications to' do
