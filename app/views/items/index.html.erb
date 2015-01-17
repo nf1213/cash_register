@@ -8,13 +8,14 @@
     <% end %>
   </div>
   <div class="columns small-4 sale-items">
+    <!-- make this into a partial -->
     <% @sale.sale_items.each do |s_item| %>
-      <div><%= s_item.name %> <%= link_to "x", sale_item_path(s_item), method: :delete %>
+      <div><%= s_item.name %> <%= link_to "X", sale_item_path(s_item), method: :delete %>
         <% price = s_item.price / 100.00 %>
         <div class="price"><%= "#{sprintf('$%.2f', price)}" %></div>
         <ul>
           <% s_item.sale_item_modifications.each do |sim| %>
-            <li><%= sim.modification.name %></li>
+            <li><%= sim.modification.name %> <%= link_to "x", sale_item_modification_path(sim), method: :delete %></li>
           <% end %>
         </ul>
       </div>

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :sales, only: [:update]
   resources :modifications, except: [:show]
   resources :modification_options, only: [:new, :create]
-  resources :sale_item_modifications, only: [:new, :create]
+  resources :sale_item_modifications, only: [:new, :create, :destroy]
 
   root 'items#index'
 end

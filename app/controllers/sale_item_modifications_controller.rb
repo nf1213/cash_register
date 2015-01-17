@@ -9,6 +9,11 @@ class SaleItemModificationsController < ApplicationController
     redirect_to sale_item_path(@sale_item_modification.sale_item_id)
   end
 
+  def destroy
+    @sale_item_modification = SaleItemModification.find(params[:id]).destroy
+    redirect_to root_path, notice: "Modification removed"
+  end
+
   private
 
   def s_i_modification_params
