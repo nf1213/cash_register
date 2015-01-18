@@ -12,10 +12,8 @@ feature 'Employee completes a transaction' do
     visit root_path
     click_on @item.name
     click_on "Done"
-    click_on @item.name
-    click_on "Done"
 
-    total = (@item.price + @item.price) / 100.00
+    total = (@item.price) / 100.00
     expect(page).to have_content("Total: #{sprintf('$%.2f', total)}")
 
     click_on "Cash Out"
