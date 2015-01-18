@@ -5,7 +5,10 @@
       <div class="price"><%= "#{sprintf('$%.2f', price)}" %></div>
       <ul>
         <% s_item.sale_item_modifications.each do |sim| %>
-        <li><%= sim.current_count %> <%= sim.modification.name %> <%= link_to "x", sale_item_modification_path(sim), method: :delete %></li>
+        <li><% unless sim.current_count == 1 %>
+          <%= sim.current_count %>
+        <% end %>
+        <%= sim.modification.name %> <%= link_to "x", sale_item_modification_path(sim), method: :delete %></li>
         <% end %>
       </ul>
     </div>
