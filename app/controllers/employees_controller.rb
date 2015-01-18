@@ -33,7 +33,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     salary = params[:employee][:salary].to_f * 100
     if salary < 800
-      redirect_to edit_employee_path(@employee), notice: "Salary must be a number higher than $8.00"
+      redirect_to edit_employee_path(@employee), alert: "Salary must be a number higher than $8.00"
     else
       @employee.update(salary: salary)
       @employee.update(status: params[:employee][:status])
@@ -54,7 +54,7 @@ class EmployeesController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path, notice: "Login success"
     else
-      redirect_to employees_sign_in_path, notice: "Invalid credentials"
+      redirect_to employees_sign_in_path, alert: "Invalid credentials"
     end
   end
 
@@ -84,7 +84,7 @@ class EmployeesController < ApplicationController
         redirect_to employees_clock_in_out_path, notice: "Clocked out"
       end
     else
-      redirect_to employees_clock_in_out_path, notice: "Invalid credentials"
+      redirect_to employees_clock_in_out_path, alert: "Invalid credentials"
     end
   end
 

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     unless current_employee
-      redirect_to employees_sign_in_path
+      redirect_to employees_sign_in_path, alert: "Please sign in"
     end
   end
 
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def must_be_manager
     if current_employee.status != "Manager"
-      redirect_to root_path, notice: "You are not authorized for this"
+      redirect_to root_path, alert: "You are not authorized for this"
     end
   end
 

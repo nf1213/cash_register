@@ -47,9 +47,15 @@
 </nav>
 
 <%- flash.each do |key, value| -%>
-  <div class="alert-box success" data-alert>
-    <%= value %>
-  </div>
+  <% if key == "notice" %>
+    <div class="alert-box success" data-alert>
+      <%= value %>
+    </div>
+  <% else %>
+    <div class="alert-box alert" data-alert>
+      <%= value %>
+    </div>
+  <% end %>
 <%- end -%>
 
 <div class="container">

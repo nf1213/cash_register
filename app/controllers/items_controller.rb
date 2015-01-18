@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
     @item.update(item_params)
     price = params[:item][:price].to_f * 100
     if price == 0
-      redirect_to edit_item_path(@item), notice: "Price must be a number"
+      redirect_to edit_item_path(@item), alert: "Price must be a number"
     else
       @item.update(price: price)
       redirect_to items_edit_index_path, notice: "Item Updated"
