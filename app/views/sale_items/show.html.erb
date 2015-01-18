@@ -4,7 +4,7 @@
       <%= form_for(:sale_item_modification, url: sale_item_modifications_path) do |f| %>
         <%= f.hidden_field :sale_item_id, value: @sale_item.id %>
         <%= f.hidden_field :modification_id, value: mod.id %>
-        <%= f.submit "#{mod.name}", class: "button mod" %>
+        <%= f.submit "#{mod.name}", class: "button green" %>
       <% end %>
     <% end %>
     <br><a href="<%= root_path %>">Done</a>
