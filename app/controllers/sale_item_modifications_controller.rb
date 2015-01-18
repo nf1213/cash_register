@@ -18,7 +18,11 @@ class SaleItemModificationsController < ApplicationController
   def destroy
     @sale_item_modification = SaleItemModification.find(params[:id])
     update = @sale_item_modification.current_count - 1;
-    @sale_item_modification.update(current_count: update)
+    if update == 0
+      @sale_item_modification.destroy
+    else
+      @sale_item_modification.update(current_count: update)
+    end
     redirect_to root_path, notice: "Modification removed"
   end
 
