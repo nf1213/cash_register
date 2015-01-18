@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :restaurant_exists?
   before_action :authenticate
-  before_action :must_be_manager, only: [:new, :create, :edit, :edit_index, :update]
+  before_action :must_be_manager, only: [:new, :create, :edit, :edit_index, :update, :destroy]
 
   def index
     @items = Item.all
