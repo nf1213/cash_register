@@ -1,4 +1,6 @@
 class SaleItemModificationsController < ApplicationController
+  before_action :restaurant_exists?
+  before_action :authenticate
 
   def new
     @sale_item_modification = SaleItemModification.new
