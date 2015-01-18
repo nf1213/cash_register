@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'static_pages/manager_functions'
   get 'employees/sign_in'
   post 'employees/sign_in_employee'
-  post 'employees/sign_out'
+  get 'employees/sign_out'
   get '/modification_options/inverse_new'
   post '/modification_options/inverse_create'
   get 'employees/payroll'
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :restaurants
 
-  resources :employees
+  resources :employees, except: [:show]
 
   resources :sale_items, only: [:create, :destroy, :show]
   resources :sales, only: [:update]
