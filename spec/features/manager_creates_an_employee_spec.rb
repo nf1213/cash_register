@@ -44,7 +44,7 @@ feature "Manager creates and employee spec" do
 
     click_on "Create"
 
-    expect(page).to have_content "Name can't be blank"
+    expect(page).to have_content "Namecan't be blank"
   end
 
 end

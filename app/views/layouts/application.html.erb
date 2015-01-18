@@ -22,13 +22,13 @@
       <li class="divider"></li>
       <% if current_employee %>
         <li class="has-dropdown not-click">
-          <a href="#">
           <% if current_employee.current_shift %>
             <% clocked_in = "Clocked in" %>
           <% else %>
             <% clocked_in = "Not clocked in" %>
           <% end %>
-          <%= "Signed in as #{current_employee.name}, #{clocked_in}" %>
+          <a href="#">
+            <%= "Signed in as #{current_employee.name}, #{clocked_in}" %>
           </a>
           <ul class="dropdown">
             <li><%= link_to "Clock In/Out", employees_clock_in_out_path %></li>
@@ -47,7 +47,7 @@
 </nav>
 
 <%- flash.each do |key, value| -%>
-  <div class="alert-box success">
+  <div class="alert-box success" data-alert>
     <%= value %>
   </div>
 <%- end -%>

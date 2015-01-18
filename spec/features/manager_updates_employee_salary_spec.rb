@@ -12,7 +12,7 @@ feature "Manager updates an employee's salary" do
   scenario "provides a valid number" do
     visit edit_employee_path(@employee)
 
-    fill_in "Salary $", with: 10.00
+    fill_in "Salary", with: 10.00
     select "Manager", from: "Status"
 
     click_on "Update"
