@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     unless current_employee
-      redirect_to employees_sign_in_path, alert: "Please sign in"
+      redirect_to employees_sign_in_path, alert: "Please Sign In"
     end
   end
 

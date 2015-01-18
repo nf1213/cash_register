@@ -13,7 +13,7 @@ feature "Employee signs out" do
     click_on "Sign Out"
 
     expect(page).to have_content "Signed out"
-    expect(page).to have_content "Please Sign In"
+    expect(page).to have_content "Sign In"
 
   end
 
