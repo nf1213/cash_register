@@ -42,6 +42,6 @@ class ModificationsController < ApplicationController
   private
 
   def modification_params
-    params.require(:modification).permit(:name, :price)
+    params.require(:modification).permit(:name, :price, :limit)
   end
 end

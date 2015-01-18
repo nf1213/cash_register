@@ -21,6 +21,11 @@
   <%= f.number_field :price , value: "#{sprintf('%.2f', ((@modification.price || 0) / 100.00))}", :step => 0.01 %>
 </div>
 
+<div class="field">
+  <%= f.label :limit %><br>
+  <%= f.number_field :limit %>
+</div>
+
 <div class="actions">
   <%= f.submit "Update" %>
 </div>

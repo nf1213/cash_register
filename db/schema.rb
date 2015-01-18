@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150116191959) do
+ActiveRecord::Schema.define(version: 20150118150318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,10 +48,11 @@ ActiveRecord::Schema.define(version: 20150116191959) do
   add_index "modification_options", ["item_id", "modification_id"], name: "index_modification_options_on_item_id_and_modification_id", unique: true, using: :btree
 
   create_table "modifications", force: true do |t|
-    t.string   "name",       null: false
+    t.string   "name",                   null: false
     t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "limit",      default: 5, null: false
   end
 
   add_index "modifications", ["name"], name: "index_modifications_on_name", unique: true, using: :btree
@@ -63,10 +64,11 @@ ActiveRecord::Schema.define(version: 20150116191959) do
   end
 
   create_table "sale_item_modifications", force: true do |t|
-    t.integer  "sale_item_id",    null: false
-    t.integer  "modification_id", null: false
+    t.integer  "sale_item_id",                null: false
+    t.integer  "modification_id",             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "current_count",   default: 0
   end
 
   create_table "sale_items", force: true do |t|

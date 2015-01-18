@@ -7,7 +7,11 @@ class SaleItemModificationsController < ApplicationController
   end
 
   def create
-    @sale_item_modification = SaleItemModification.create(s_i_modification_params)
+    @sale_item_modification = SaleItemModification.where(s_i_modification_params).first_or_create
+    if @sale_item_modification.current_count < @sale_item_modification.modification.limit
+      update = @sale_item_modification.current_count + 1;
+      @sale_item_modification.update(current_count: update)
+    end
     redirect_to sale_item_path(@sale_item_modification.sale_item_id)
   end
 
