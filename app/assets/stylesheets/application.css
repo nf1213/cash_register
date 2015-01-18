@@ -16,7 +16,7 @@
 
  */
 
- #item, #mod, #manager {
+ .button {
    width: 75px;
    height: 50px;
    padding: 5px;
@@ -27,19 +27,22 @@
    float: left;
 }
 
- #item {
-   background-color: blue;
-   border: 2px solid #71BEF5;
+ .green {
+   background-color: #18A33B
  }
 
- #mod {
+ .green:hover {
    background-color: green;
  }
 
- #manager {
+ .magenta {
    background-color: magenta;
    height: 90px;
    width: 80px;
+ }
+
+ .magenta:hover {
+   background-color: #A318A3;
  }
 
  #hidden_total {
