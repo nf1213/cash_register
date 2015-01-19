@@ -11,6 +11,8 @@ class SaleItemModificationsController < ApplicationController
     if @sale_item_modification.current_count < @sale_item_modification.modification.limit
       update = @sale_item_modification.current_count + 1;
       @sale_item_modification.update(current_count: update)
+      update_total = current_sale.total + @sale_item_modification.modification.price
+      current_sale.update(total: update_total )
     end
     redirect_to sale_item_path(@sale_item_modification.sale_item_id)
   end
@@ -23,6 +25,8 @@ class SaleItemModificationsController < ApplicationController
     else
       @sale_item_modification.update(current_count: update)
     end
+    update_total = current_sale.total - @sale_item_modification.modification.price
+    current_sale.update(total: update_total )
     redirect_to root_path, notice: "Modification removed"
   end
 

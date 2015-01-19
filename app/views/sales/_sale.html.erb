@@ -6,10 +6,14 @@
         <div class="price"><%= "#{sprintf('$%.2f', price)}" %></div>
         <ul>
           <% s_item.sale_item_modifications.each do |sim| %>
-          <li><% unless sim.current_count == 1 %>
-            <%= sim.current_count %>
-          <% end %>
-          <%= sim.modification.name %> <%= link_to "x", sale_item_modification_path(sim), method: :delete %></li>
+            <li><% unless sim.current_count == 1 %>
+              <%= sim.current_count %>
+            <% end %>
+            <%= sim.modification.name %> <%= link_to "x", sale_item_modification_path(sim), method: :delete %>
+            <% sim_price = (sim.modification.price / 100.00) * sim.current_count %>
+            <% if sim_price > 0 %>
+              <span class="price"><%= "#{sprintf('$%.2f', sim_price)}" %></span>
+            <% end %></li>
           <% end %>
         </ul>
       </div>
@@ -18,5 +22,6 @@
     <p class="total price">Total: <%= "#{sprintf('$%.2f', total_price)}" %></p>
     <div id="hidden_total"><%= @sale.total %></div>
     <%= button_to "Cash Out", sale_path(@sale), method: :patch, id: 'cash_out', class: "button expand" %>
+    <%= button_to "Cancel", sale_path(@sale), method: :patch, class: "button expand alert" %>
   </div>
 <% end %>
