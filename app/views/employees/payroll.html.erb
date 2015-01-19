@@ -6,11 +6,8 @@
       <ul>
         <% e.shifts.each do |s| %>
           <% if s.clock_out != nil %>
-            <% if s.clock_out.min < s.clock_in.min %>
-              <% shift_hours = 60 - s.clock_out.min - s.clock_in.min %>
-            <% else %>
-              <% shift_hours = s.clock_out.min - s.clock_in.min %>
-            <% end %>
+            <% days = (s.clock_out.day - s.clock_in.day) * 24 %>
+            <% shift_hours = s.clock_out.hour - s.clock_in.hour + days %>
             <li><%= s.clock_out.month %>/<%= s.clock_out.day %>: <%= shift_hours %></li>
             <% total_hours += shift_hours %>
           <% end %>
