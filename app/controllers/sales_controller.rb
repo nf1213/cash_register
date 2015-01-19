@@ -18,5 +18,6 @@ class SalesController < ApplicationController
 
   def index
     @sales = Sale.all
+    @items = Item.all
   end
 end

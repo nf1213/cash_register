@@ -2,7 +2,12 @@
   <div class="columns small-12">
     <h4>Profits</h4>
     <% sum = 0 %>
-    <% @sales.each { |s| sum += s.total } %>
-    <p><%= "#{sprintf('$%.2f', sum / 100.00)}"%></p>
+    <% @sales.each do |s| %>
+      <% sum += s.total  %>
+    <% end %>
+    <p>Total: <%= "#{sprintf('$%.2f', sum / 100.00)}"%></p>
+    <% @items.each do |i| %>
+      <p><%= i.name %>: <%= calculate_total_sold(i) %> sold, <%= sprintf('$%.2f', calculate_profit(i) / 100.00) %></p>
+    <% end %>
   </div>
 </div>
