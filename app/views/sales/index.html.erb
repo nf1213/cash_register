@@ -10,5 +10,35 @@
       <p><%= i.name %>: <%= calculate_total_sold(i) %> sold, <%= sprintf('$%.2f', calculate_profit(i) / 100.00) %></p>
     <% end %>
     <%= link_to "Clear Data", sales_destroy_all_path, class: "button alert"%>
+    <div id="container"></div>
   </div>
 </div>
+
+<%= content_for :extra_footer do %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script>
+  $(function () {
+    $('#container').highcharts({
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: 'All Items'
+      },
+      xAxis: {
+        categories: <%= raw Item.all.collect {|i| i.name }.to_json %>
+      },
+      yAxis: {
+        title: {
+          text: 'Number'
+        }
+      },
+      series: [{
+        name: '',
+        data: <%= raw Item.all.collect { |i| calculate_total_sold(i) }.to_json %>
+      }]
+    });
+  });
+</script>
+<% end %>
