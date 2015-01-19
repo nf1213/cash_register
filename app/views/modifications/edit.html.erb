@@ -3,11 +3,11 @@
     <h4>Edit Modification</h4>
     <%= simple_form_for @modification do |f| %>
       <%= f.input :name %>
-      <% price = (@modification.price / 100.00) %>
+      <% price = (@modification.price / 100.00 ) %>
       <%= f.input :price, input_html: { value: "#{sprintf('%.2f', price)}" } %>
       <%= f.input :limit %>
-      <%= f.button :submit, "Update" %>
+      <%= f.button :submit, "Update", class: "expand" %>
     <% end %>
-    <%= button_to "Delete", modification_path(@modification), method: :delete, class: "button" %>
+    <%= button_to "Delete", modification_path(@modification), method: :delete, class: "button alert expand" %>
   </div>
 </div>

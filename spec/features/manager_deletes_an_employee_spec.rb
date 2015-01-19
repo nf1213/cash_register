@@ -19,7 +19,7 @@ feature "Mangaer deletes an employee" do
   scenario "can't delete themselves" do
     sign_in_as(@manager)
 
-    visit employees_path
+    visit edit_employee_path(@manager)
 
     expect(page).to_not have_content "Delete"
   end
@@ -29,8 +29,7 @@ feature "Mangaer deletes an employee" do
     sign_in_as(@manager)
 
     visit employees_path
-
-    expect(page).to have_content employee.name
+    click_on employee.name
 
     click_on "Delete"
 

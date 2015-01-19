@@ -1,10 +1,11 @@
 <div class="row">
   <div class="columns small-12">
+    <h4>New Employee</h4>
     <%= simple_form_for @employee do |f| %>
       <%= f.input :name %>
       <%= f.input :password %>
       <%= f.input :status, collection: ["Employee", "Manager"] %>
-      <%= f.button :submit, "Create" %>
+      <%= f.button :submit, "Create", class: "expand" %>
     <% end %>
   </div>
 </div>

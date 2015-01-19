@@ -1,15 +1,20 @@
-<%= form_for :employee, :url => {:action => 'clock'} do |f| %>
-<div class="field">
-  <%= f.label :name %><br />
-  <%= f.select :name, Employee.names %>
-</div>
+<div class="row">
+  <div class="columns small-12">
+    <h4>Time Clock</h4>
+    <%= form_for :employee, :url => {:action => 'clock'} do |f| %>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.select :name, Employee.names %>
+    </div>
 
-<div class="field">
-  <%= f.label :password %><br />
-  <%= f.password_field :password, autocomplete: "off" %>
-</div>
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "off" %>
+    </div>
 
-<div class="actions">
-  <%= f.submit "Clock in/out" %>
+    <div class="actions">
+      <%= f.submit "Clock in/out", class: "button expand" %>
+    </div>
+    <% end %>
+  </div>
 </div>
-<% end %>

@@ -1,10 +1,14 @@
 <div class="row">
   <div class="columns small-12">
+    <h4>Edit <%= @employee.name %></h4>
     <%= simple_form_for @employee do |f| %>
       <% salary = (@employee.salary / 100.00) %>
       <%= f.input :salary, input_html: { value: "#{sprintf('%.2f', salary)}" } %>
       <%= f.input :status, collection: ["Employee", "Manager"] %>
-      <%= f.button :submit, "Update" %>
+      <%= f.button :submit, "Update", class: "expand" %>
+    <% end %>
+    <% unless @employee == current_employee %>
+      <%= button_to "Delete", employee_path(@employee), method: :delete, class: "button alert expand" %>
     <% end %>
   </div>
 </div>

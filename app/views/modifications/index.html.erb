@@ -1,3 +1,7 @@
-<% @modifications.each do |m| %>
-<%= link_to "#{m.name}", edit_modification_path(m) %><br>
-<% end %>
+<div class="row">
+  <div class="columns small-12">
+    <% @modifications.each do |m| %>
+    <%= link_to "#{m.name}", edit_modification_path(m) %><br>
+    <% end %>
+  </div>
+</div>

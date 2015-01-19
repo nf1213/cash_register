@@ -1,15 +1,20 @@
-<%= form_for @modification_option,  url: {action: "inverse_create"} do |f| %>
-<div class="field">
-  <%= f.label :modification %>
-  <%= f.select :modification,  Modification.all.collect {|i| [ i.name, i.id ] } %>
-</div>
+<div class="row">
+  <div class="columns small-12">
+    <h4>Apply Modifications</h4>
+    <%= form_for @modification_option,  url: {action: "inverse_create"} do |f| %>
+    <div class="field">
+      <%= f.label :modification %>
+      <%= f.select :modification,  Modification.all.collect {|i| [ i.name, i.id ] } %>
+    </div>
 
-<div class="field">
-  <%= f.label :item, "Items" %>
-  <%= f.collection_check_boxes(:item_ids, Item.all, :id, :name) %>
-</div>
+    <div class="field">
+      <%= f.label :item, "Items" %>
+      <%= f.collection_check_boxes(:item_ids, Item.all, :id, :name) %>
+    </div>
 
-<div class="actions">
-  <%= f.submit "Create Options" %>
+    <div class="actions">
+      <%= f.submit "Create Options", class: "button expand" %>
+    </div>
+    <% end %>
+  </div>
 </div>
-<% end %>
