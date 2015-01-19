@@ -46,12 +46,12 @@
  }
 
  #hidden_total {
-   color: white;
+   color: #C0CED1;
  }
 
-body {
+/*body {
   background-color: #96CAEB;
-}
+}*/
 
 .price {
   padding-bottom: 5px;
@@ -59,12 +59,14 @@ body {
 }
 
 .total {
+  margin-top: 5px;
   border-top: 1px solid black;
 }
 
 .sale-items, .sale-prices {
-  background-color: white;
+  background-color: #C0CED1;
   padding-bottom: 5px;
+  border: 2px solid #9AB1B5;
 }
 
 .container {
