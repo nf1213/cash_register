@@ -22,7 +22,12 @@ class SalesController < ApplicationController
   end
 
   def destroy_all
-    Sale.destroy_all
+    Sale.all.each do |s|
+      e = Employee.find(s.employee_id)
+      if e.current_sale != s.id
+        s.destroy
+      end
+    end
     redirect_to root_path, alert: "Sales Destroyed"
   end
 end
