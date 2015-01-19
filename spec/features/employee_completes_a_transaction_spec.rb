@@ -17,6 +17,6 @@ feature 'Employee completes a transaction' do
     expect(page).to have_content("Total: #{sprintf('$%.2f', total)}")
 
     click_on "Cash Out"
-    expect(page).to have_content("Total: $0.00")
+    expect(page).to_not have_content("Total: ")
   end
 end
