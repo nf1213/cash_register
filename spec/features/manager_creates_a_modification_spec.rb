@@ -24,7 +24,7 @@ feature "Manager creates a modification" do
 
     fill_in "Name", with: modification.name
 
-    click_on "Create Modification"
+    click_on "Create"
 
     expect(page).to have_content "New modification created"
   end
@@ -32,19 +32,19 @@ feature "Manager creates a modification" do
   scenario "provides an invalid name" do
     manager = FactoryGirl.create(:employee, status:"Manager")
     sign_in_as(manager)
-    
+
     existing = FactoryGirl.create(:modification)
 
     visit new_modification_path
 
-    click_on "Create Modification"
+    click_on "Create"
 
-    expect(page).to have_content "Name can't be blank"
+    expect(page).to have_content "Namecan't be blank"
 
     fill_in "Name", with: existing.name
 
-    click_on "Create Modification"
+    click_on "Create"
 
-    expect(page).to have_content "Name has already been taken"
+    expect(page).to have_content "Namehas already been taken"
   end
 end

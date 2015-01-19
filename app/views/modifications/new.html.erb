@@ -1,32 +1,10 @@
-<h4>Create a New Modification</h4>
-<%= form_for @modification do |f| %>
-  <% if @modification.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@modification.errors.count, "error") %> prohibited this modification from being saved:</h2>
-      <ul>
-        <% @modification.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<div class="row">
+  <div class="columns small-12">
+    <h4>Create a New Modification</h4>
+    <%= simple_form_for @modification do |f| %>
+    <%= f.input :name %>
+    <%= f.input :price %>
+    <%= f.button :submit, "Create" %>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.number_field :price, :step => 0.01 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :limit %><br>
-    <%= f.number_field :limit %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

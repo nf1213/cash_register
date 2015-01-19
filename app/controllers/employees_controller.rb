@@ -32,12 +32,12 @@ class EmployeesController < ApplicationController
   def update
     @employee = Employee.find(params[:id])
     salary = params[:employee][:salary].to_f * 100
-    if salary < 800
-      redirect_to edit_employee_path(@employee), alert: "Salary must be a number higher than $8.00"
-    else
-      @employee.update(salary: salary)
-      @employee.update(status: params[:employee][:status])
+    @employee.update(salary: salary)
+    @employee.update(status: params[:employee][:status])
+    if @employee.save
       redirect_to employees_path, notice: "Employee updated"
+    else
+      render :edit
     end
   end
 

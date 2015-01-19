@@ -15,11 +15,6 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     price = params[:item][:price].to_f * 100
-    if price == 0
-      @item.price = nil
-    else
-      @item.price = price
-    end
     if @item.save
       redirect_to root_path
     else
@@ -39,11 +34,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.update(item_params)
     price = params[:item][:price].to_f * 100
-    if price == 0
-      redirect_to edit_item_path(@item), alert: "Price must be a number"
-    else
-      @item.update(price: price)
+    @item.update(price: price)
+    if @item.save
       redirect_to items_edit_index_path, notice: "Item Updated"
+    else
+      render :edit
     end
   end
 

@@ -48,7 +48,7 @@ feature "Manager updates an item" do
 
     click_on "Update"
 
-    expect(page).to have_content "Price must be a number"
+    expect(page).to have_content "must be greater than $0.00"
   end
 
   scenario "deletes an item" do

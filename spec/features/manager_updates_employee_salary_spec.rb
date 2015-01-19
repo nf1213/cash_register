@@ -27,7 +27,7 @@ feature "Manager updates an employee's salary" do
 
     click_on "Update"
 
-    expect(page).to have_content "Salary must be a number higher than $8.00"
+    expect(page).to have_content "must be greater than $0.00"
   end
 
 end

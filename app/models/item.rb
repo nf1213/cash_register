@@ -6,4 +6,6 @@ class Item < ActiveRecord::Base
   validates_uniqueness_of :name
 
   validates_presence_of :price
+  validates :price,
+    numericality: { greater_than: 0, message: "must be greater than $0.00" }
 end

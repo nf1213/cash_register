@@ -43,8 +43,8 @@ feature 'Manager creates an item' do
 
     click_on "Create Item"
 
-    expect(page).to have_content "Name can't be blank"
-    expect(page).to have_content "Price can't be blank"
+    expect(page).to have_content "Namecan't be blank"
+    expect(page).to have_content "Pricecan't be blank"
 
   end
 
@@ -60,7 +60,7 @@ feature 'Manager creates an item' do
 
     click_on "Create Item"
 
-    expect(page).to have_content "Name has already been taken"
+    expect(page).to have_content "Namehas already been taken"
   end
 
 end

@@ -16,7 +16,11 @@ class ModificationsController < ApplicationController
     @modification.update(modification_params)
     price = params[:modification][:price].to_f * 100
     @modification.update(price: price)
-    redirect_to modifications_path, notice: "Modification Updated"
+    if @modification.save
+      redirect_to modifications_path, notice: "Modification Updated"
+    else
+      render :edit
+    end
   end
 
   def destroy
