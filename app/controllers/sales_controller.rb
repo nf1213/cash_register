@@ -23,6 +23,6 @@ class SalesController < ApplicationController
 
   def destroy_all
     Sale.destroy_all
-    redirect_to root_path, alert "Sales Destroyed"
+    redirect_to root_path, alert: "Sales Destroyed"
   end
 end
