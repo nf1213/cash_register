@@ -20,4 +20,9 @@ class SalesController < ApplicationController
     @sales = Sale.all
     @items = Item.all
   end
+
+  def destroy_all
+    Sale.destroy_all
+    redirect_to root_path, alert "Sales Destroyed"
+  end
 end
