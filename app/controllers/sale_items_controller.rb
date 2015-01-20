@@ -18,7 +18,7 @@ class SaleItemsController < ApplicationController
     update_total = @sale_item.sale.total - @sale_item.price
     @sale_item.sale.update(total: update_total )
     @sale_item.destroy
-    redirect_to root_path, notice: "Item voided"
+    redirect_to root_path, alert: "Item voided"
   end
 
   def show

@@ -28,6 +28,6 @@ class SalesController < ApplicationController
         s.destroy
       end
     end
-    redirect_to root_path, alert: "Sales Destroyed"
+    redirect_to sales_path, alert: "Sales Destroyed"
   end
 end

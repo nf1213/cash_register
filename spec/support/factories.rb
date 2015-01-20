@@ -24,4 +24,15 @@ FactoryGirl.define do
     status 'Employee'
     salary 800
   end
+
+  factory :sale do
+    employee
+  end
+
+  factory :sale_item do
+    name "Pizza"
+    price 1000
+    item
+    sale
+  end
 end

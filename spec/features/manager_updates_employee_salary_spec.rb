@@ -6,10 +6,18 @@ feature "Manager updates an employee's salary" do
     FactoryGirl.create(:restaurant)
     @manager = FactoryGirl.create(:employee, status: "Manager")
     @employee = FactoryGirl.create(:employee)
-    sign_in_as(@manager)
+  end
+
+  scenario "must be a manager" do
+    sign_in_as(@employee)
+
+    visit edit_employee_path(@manager)
+
+    expect(page).to have_content "You are not authorized for this"
   end
 
   scenario "provides a valid number" do
+    sign_in_as(@manager)
     visit edit_employee_path(@employee)
 
     fill_in "Salary", with: 10.00
@@ -21,6 +29,7 @@ feature "Manager updates an employee's salary" do
   end
 
   scenario "provides invalid input" do
+    sign_in_as(@manager)
     visit edit_employee_path(@manager)
 
     fill_in "Salary", with: ""
