@@ -1,5 +1,5 @@
 <div class="row">
-  <div id="buttons" class="columns small-8">
+  <div id="buttons" class="columns small-12 medium-6 large-8">
     <% @sale_item.item.modifications.each do |mod| %>
       <%= form_for(:sale_item_modification, url: sale_item_modifications_path) do |f| %>
         <%= f.hidden_field :sale_item_id, value: @sale_item.id %>
