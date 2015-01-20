@@ -17,13 +17,13 @@
  */
 
  .button {
-   width: 75px;
-   height: 50px;
+   width: 90px;
+   min-height: 60px;
    padding: 5px;
    margin: 5px;
    color: white;
    display: inline;
-   font-size: 12px;
+   font-size: 13px;
    float: left;
 }
 
@@ -37,12 +37,18 @@
 
  .magenta {
    background-color: magenta;
-   height: 90px;
-   width: 80px;
  }
 
  .magenta:hover {
    background-color: #A318A3;
+ }
+
+ .purple {
+   background-color: #8C4FC9;
+ }
+
+ .purple:hover {
+   background-color: #6322A3;
  }
 
  #hidden_total {

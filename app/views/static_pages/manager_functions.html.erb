@@ -1,15 +1,33 @@
 <div class="row">
-  <div class="columns small-12">
-    <%= link_to "New Item", new_item_path, class: "button magenta" %>
-    <%= link_to "Edit/Delete Item", items_edit_index_path, class: "button magenta" %>
-    <%= link_to "New Employee", new_employee_path, class: "button magenta" %>
-    <%= link_to "View Employees", employees_path, class: "button magenta" %>
+  <div class="columns small-6">
+    <span class="radius secondary label">Items</span><br>
+    <%= link_to "New Item", new_item_path, class: "button" %>
+    <%= link_to "Edit/Delete Item", items_edit_index_path, class: "button" %>
+  </div>
+  <div class="columns small-6">
+    <span class="radius secondary label">Modifications</span><br>
+    <%= link_to "New Item Modification", new_modification_path, class: "button green" %>
+    <%= link_to "Edit/Delete Modification", modifications_path, class: "button green" %>
+    <%= link_to "Modify an item", new_modification_option_path, class: "button green" %>
+    <%= link_to "Modify multiple items", modification_options_inverse_new_path, class: "button green" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="columns small-6">
+    <span class="radius secondary label">Employees</span><br>
+    <%= link_to "New Employee", new_employee_path, class: "button purple" %>
+    <%= link_to "View Employees", employees_path, class: "button purple" %>
+  </div>
+  <div class="columns small-6">
+    <span class="radius secondary label">Other</span><br>
     <%= link_to "Payroll", employees_payroll_path, class: "button magenta" %>
-    <%= link_to "New Item Modification", new_modification_path, class: "button magenta" %>
-    <%= link_to "Edit/Delete Modification", modifications_path, class: "button magenta" %>
-    <%= link_to "Add Modifications on an Item", new_modification_option_path, class: "button magenta" %>
-    <%= link_to "Add a Modification to Multiple Items", modification_options_inverse_new_path, class: "button magenta" %>
     <%= link_to "Profits", sales_path, class: "button magenta" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="columns small-12">
     <%= link_to "Back", root_path %>
   </div>
 </div>
