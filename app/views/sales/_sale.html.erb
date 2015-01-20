@@ -1,5 +1,5 @@
 <% unless @sale.sale_items.empty? %>
-  <div class="columns small-4 sale-items">
+  <div class="columns small-4 panel callout radius">
     <% @sale.sale_items.each do |s_item| %>
       <div><%= link_to s_item.name, sale_item_path(s_item) %> <%= link_to "X", sale_item_path(s_item), method: :delete %>
         <% price = s_item.price / 100.00 %>
