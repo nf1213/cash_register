@@ -10,7 +10,7 @@
       <p><%= i.name %>: <%= calculate_total_sold(i) %> sold, <%= sprintf('$%.2f', calculate_profit(i) / 100.00) %></p>
     <% end %>
     <%= link_to "Clear Data", sales_destroy_all_path, class: "button alert"%>
-    <div id="container"></div>
+    <div id="one-item"></div>
   </div>
 </div>
 
@@ -18,26 +18,33 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script>
+var today = new Date();
   $(function () {
-    $('#container').highcharts({
-      chart: {
-        type: 'bar'
-      },
+    $('#one-item').highcharts({
       title: {
-        text: 'All Items'
+        text: "Item"
       },
+
       xAxis: {
-        categories: <%= raw Item.all.collect {|i| i.name }.to_json %>
+        type: 'datetime'
       },
+
       yAxis: {
         title: {
-          text: 'Number'
+          text: "Number Sold"
         }
       },
-      series: [{
-        name: '',
-        data: <%= raw Item.all.collect { |i| calculate_total_sold(i) }.to_json %>
-      }]
+
+      series: [
+      <% Item.all.each do |i| %>
+        {
+          name: "<%= i.name %>",
+          data: <%= get_sold_by_date(i) %>,
+          pointInterval: 24 * 3600000,
+          pointStart: today-1000*60*60*24*7
+        },
+      <% end %>
+      ]
     });
   });
 </script>

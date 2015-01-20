@@ -21,4 +21,14 @@ module ApplicationHelper
     end
     total
   end
+
+  def get_sold_by_date(item)
+    week = 1.week.ago.to_date..Date.today
+    sold = []
+    week.each do |date|
+      sold << item.sale_items.where("extract(year from created_at) = ? and extract(month from created_at) = ? and extract(day from created_at) = ?", date.year, date.month, date.day).count
+    end
+
+    return sold
+  end
 end
