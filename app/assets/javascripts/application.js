@@ -24,6 +24,12 @@ $('#cash_out').click(function(){
   var total = parseInt($('#hidden_total').text());
   var given = parseInt(prompt("Cash given:")) * 100;
   var remainder = given - total;
+  while(given < total){
+    given = parseInt(prompt("Not enough, try again:")) * 100;
+    remainder = given - total;
+  }
+  var change = remainder / 100.00
+  change = "$" + change.toFixed(2)
   while(remainder > 0) {
     for(var i = 0; i < COINS_AND_BILLS.length; i++) {
       var value = COINS_AND_BILLS[i];
@@ -35,5 +41,5 @@ $('#cash_out').click(function(){
       }
     }
   }
-  alert("Cash to give: " + give);
+  alert("Cash to give: " + change + "\n" + give);
 });

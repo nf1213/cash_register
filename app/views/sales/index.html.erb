@@ -19,33 +19,33 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script>
 var today = new Date();
-  $(function () {
-    $('#one-item').highcharts({
+$(function () {
+  $('#one-item').highcharts({
+    title: {
+      text: "Item"
+    },
+
+    xAxis: {
+      type: 'datetime'
+    },
+
+    yAxis: {
       title: {
-        text: "Item"
-      },
+        text: "Number Sold"
+      }
+    },
 
-      xAxis: {
-        type: 'datetime'
-      },
-
-      yAxis: {
-        title: {
-          text: "Number Sold"
-        }
-      },
-
-      series: [
-      <% Item.all.each do |i| %>
-        {
-          name: "<%= i.name %>",
-          data: <%= get_sold_by_date(i) %>,
-          pointInterval: 24 * 3600000,
-          pointStart: today-1000*60*60*24*7
-        },
-      <% end %>
-      ]
-    });
+    series: [
+    <% Item.all.each do |i| %>
+    {
+      name: "<%= i.name %>",
+      data: <%= get_sold_by_date(i) %>,
+      pointInterval: 24 * 3600000,
+      pointStart: today-1000*60*60*24*7
+    },
+    <% end %>
+    ]
   });
+});
 </script>
 <% end %>
