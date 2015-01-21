@@ -11,7 +11,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'must be a manager' do
-    employee = FactoryGirl.create(:employee)
+    employee = factory_for_employee
     sign_in_as(employee)
 
     visit new_modification_path
@@ -19,7 +19,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'successfully adds multiple options to an item' do
-    manager = FactoryGirl.create(:employee, status:"Manager")
+    manager = factory_for_manager
     sign_in_as(manager)
 
     visit new_modification_option_path
@@ -32,7 +32,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'does not provide any modifications to add' do
-    manager = FactoryGirl.create(:employee, status:"Manager")
+    manager = factory_for_manager
     sign_in_as(manager)
 
     visit new_modification_option_path
@@ -42,7 +42,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'successfully adds an option to multiple items' do
-    manager = FactoryGirl.create(:employee, status:"Manager")
+    manager = factory_for_manager
     sign_in_as(manager)
 
     visit modification_options_inverse_new_path
@@ -55,7 +55,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'does not provide any items to add modifications to' do
-    manager = FactoryGirl.create(:employee, status:"Manager")
+    manager = factory_for_manager
     sign_in_as(manager)
 
     visit modification_options_inverse_new_path

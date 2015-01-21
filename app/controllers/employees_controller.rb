@@ -13,6 +13,7 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
+    @employee.salary = @employee.salary.to_f * 100
     if @employee.save
       redirect_to root_path, notice: "New employee created: #{@employee.name}"
     else
@@ -31,9 +32,8 @@ class EmployeesController < ApplicationController
 
   def update
     @employee = Employee.find(params[:id])
-    salary = params[:employee][:salary].to_f * 100
-    @employee.update(salary: salary)
-    @employee.update(status: params[:employee][:status])
+    @employee.update(employee_params)
+    @employee.salary = @employee.salary.to_f * 100
     if @employee.save
       redirect_to employees_path, notice: "Employee updated"
     else
@@ -49,7 +49,7 @@ class EmployeesController < ApplicationController
   def sign_in_employee
     name = params[:employee][:name]
     password = params[:employee][:password]
-    user = Employee.find_by name: name, password: password
+    user = Employee.authenticate(name, password)
     if user
       session[:user_id] = user.id
       redirect_to root_path, notice: "Login success"
@@ -74,7 +74,7 @@ class EmployeesController < ApplicationController
   def clock
     name = params[:employee][:name]
     password = params[:employee][:password]
-    employee = Employee.find_by name: name, password: password
+    employee = Employee.authenticate(name, password)
     if employee
       if !employee.current_shift
         clock_in(employee)
@@ -102,7 +102,7 @@ class EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:employee).permit(:name, :password, :status, :salary)
+    params.require(:employee).permit(:name, :password, :password_confirmation, :status, :salary)
   end
 
 end

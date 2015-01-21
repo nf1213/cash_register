@@ -4,7 +4,7 @@ feature "Employee signs out" do
 
   scenario "." do
     restaurant = FactoryGirl.create(:restaurant)
-    employee = FactoryGirl.create(:employee)
+    employee = factory_for_employee
 
     sign_in_as(employee)
 

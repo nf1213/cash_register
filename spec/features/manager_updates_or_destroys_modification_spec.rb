@@ -4,12 +4,12 @@ feature "Manager updates or destroys a modification" do
 
   before(:each) do
     FactoryGirl.create(:restaurant)
-    @manager = FactoryGirl.create(:employee, status: "Manager")
+    @manager = factory_for_manager
     @modification = FactoryGirl.create(:modification)
   end
 
   scenario "must be a manager" do
-    employee = FactoryGirl.create(:employee)
+    employee = factory_for_employee
     sign_in_as(employee)
 
     visit edit_modification_path(@modification)

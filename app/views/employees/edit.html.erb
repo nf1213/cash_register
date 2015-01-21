@@ -2,9 +2,10 @@
   <div class="columns small-12">
     <h4>Edit <%= @employee.name %></h4>
     <%= simple_form_for @employee do |f| %>
-      <% salary = (@employee.salary / 100.00) %>
+      <% salary = (@employee.salary.to_f / 100) %>
       <%= f.input :salary, input_html: { value: "#{sprintf('%.2f', salary)}" } %>
       <%= f.input :status, collection: ["Employee", "Manager"] %>
+      <%= f.input :password %>
       <%= f.button :submit, "Update", class: "expand" %>
     <% end %>
     <% unless @employee == current_employee %>

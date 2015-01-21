@@ -4,7 +4,9 @@
     <%= simple_form_for @employee do |f| %>
       <%= f.input :name %>
       <%= f.input :password %>
+      <%= f.input :password_confirmation, label: "Confirm" %>
       <%= f.input :status, collection: ["Employee", "Manager"] %>
+      <%= f.input :salary %>
       <%= f.button :submit, "Create", class: "expand" %>
     <% end %>
   </div>

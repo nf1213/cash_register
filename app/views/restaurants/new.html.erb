@@ -30,6 +30,11 @@
         </div>
 
         <div class="field">
+          <%= ff.label :password_confirmation %>
+          <%= ff.text_field :password_confirmation %>
+        </div>
+
+        <div class="field">
           <%= ff.hidden_field :status, value: "Manager" %>
         </div>
       <% end %>
