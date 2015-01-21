@@ -33,6 +33,19 @@ class Employee < ActiveRecord::Base
     end
   end
 
+  def self.authenticate(name="", login_password="")
+    employee = Employee.find_by_name(name)
+    if employee && employee.match_password(login_password)
+      return employee
+    else
+      return false
+    end
+  end
+
+  def match_password(login_password="")
+    encrypted_password == BCrypt::Engine.hash_secret(login_password, salt)
+  end
+
   def clear_password
     self.password = nil
   end

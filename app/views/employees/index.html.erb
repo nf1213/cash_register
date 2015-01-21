@@ -5,7 +5,6 @@
       <ul>
        <li>Status: <%= e.status %></li>
        <li>Date of Hire: <%= e.created_at.strftime("%m/%d/%Y") %></li>
-       <li>Password: <%= e.encrypted_password %></li>
        <li>Salary: <%= "#{sprintf('$%.2f', (e.salary / 100.00))}" %></li>
       </ul>
     <% end %>
