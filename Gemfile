@@ -26,6 +26,7 @@ gem 'foundation-rails'
 gem 'rails_12factor', group: :production
 gem 'simple_form'
 gem 'bcrypt'
+gem 'bcrypt-ruby'
 
 gem 'spring',        group: :development
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
