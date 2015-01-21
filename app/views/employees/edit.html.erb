@@ -5,6 +5,7 @@
       <% salary = (@employee.salary / 100.00) %>
       <%= f.input :salary, input_html: { value: "#{sprintf('%.2f', salary)}" } %>
       <%= f.input :status, collection: ["Employee", "Manager"] %>
+      <%= f.input :password %>
       <%= f.button :submit, "Update", class: "expand" %>
     <% end %>
     <% unless @employee == current_employee %>

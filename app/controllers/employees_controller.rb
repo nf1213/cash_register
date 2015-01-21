@@ -31,9 +31,7 @@ class EmployeesController < ApplicationController
 
   def update
     @employee = Employee.find(params[:id])
-    salary = params[:employee][:salary].to_f * 100
-    @employee.update(salary: salary)
-    @employee.update(status: params[:employee][:status])
+    @employee.update(employee_params)
     if @employee.save
       redirect_to employees_path, notice: "Employee updated"
     else
@@ -102,7 +100,7 @@ class EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:employee).permit(:name, :password, :status, :salary)
+    params.require(:employee).permit(:name, :password, :password_confirmation, :status, :salary)
   end
 
 end
