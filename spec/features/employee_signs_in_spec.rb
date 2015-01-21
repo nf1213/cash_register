@@ -7,10 +7,10 @@ feature "Employee signs in" do
   end
 
   scenario "with valid credentials" do
-    employee = FactoryGirl.create(:employee)
+    employee = factory_for_employee
 
     visit employees_sign_in_path
-    
+
     select employee.name, from: "Name"
     fill_in "Password", with: employee.password
 

@@ -8,7 +8,7 @@ feature 'Manager creates an item' do
   end
 
   scenario 'must be a manager' do
-    employee = FactoryGirl.create(:employee)
+    employee = factory_for_employee
     sign_in_as(employee)
 
     visit root_path
@@ -18,7 +18,7 @@ feature 'Manager creates an item' do
   end
 
   scenario 'fills out the form with valid attributes' do
-    employee = FactoryGirl.create(:employee, status: "Manager" )
+    employee = factory_for_manager
     sign_in_as(employee)
 
     visit root_path
@@ -36,7 +36,7 @@ feature 'Manager creates an item' do
   end
 
   scenario 'sees errors if no info is provided' do
-    employee = FactoryGirl.create(:employee, status: "Manager" )
+    employee = factory_for_manager
     sign_in_as(employee)
 
     visit new_item_path
@@ -50,7 +50,7 @@ feature 'Manager creates an item' do
 
   scenario 'sees errors if item already exists' do
     item = FactoryGirl.create(:item)
-    employee = FactoryGirl.create(:employee, status: "Manager" )
+    employee = factory_for_manager
     sign_in_as(employee)
 
     visit new_item_path

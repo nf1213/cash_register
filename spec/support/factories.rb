@@ -19,9 +19,9 @@ FactoryGirl.define do
   end
 
   factory :employee do
-    sequence(:name) {|n| "Nicole#{n}" }
+    name "Bob"
+    status "Employee"
     password 333333
-    status 'Employee'
     salary 800
   end
 

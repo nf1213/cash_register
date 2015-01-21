@@ -4,11 +4,10 @@ feature "Manager creates and employee spec" do
 
   before(:each) do
     @restaurant = FactoryGirl.create(:restaurant)
-    @employee = FactoryGirl.build(:employee)
   end
 
   scenario "Manager must be a signed in as a manager" do
-    employee = FactoryGirl.create(:employee)
+    employee = factory_for_employee
 
     sign_in_as(employee)
 
@@ -19,24 +18,25 @@ feature "Manager creates and employee spec" do
   end
 
   scenario "Manager provides valid information" do
-    manager = FactoryGirl.create(:employee, status: "Manager")
+    manager = factory_for_manager
 
     sign_in_as(manager)
 
     visit new_employee_path
 
-    fill_in "Name", with: @employee.name
-    fill_in "Password", with: @employee.password
-    select @employee.status, from: "Status"
+    fill_in "Name", with: "Bob"
+    fill_in "Password", with: 55555
+    fill_in "Confirm", with: 55555
+    select "Employee", from: "Status"
 
     click_on "Create"
 
-    expect(page).to have_content "New employee created: #{@employee.name}"
+    expect(page).to have_content "New employee created: Bob"
 
   end
 
   scenario "Manager provides invalid information" do
-    manager = FactoryGirl.create(:employee, status: "Manager")
+    manager = factory_for_manager
 
     sign_in_as(manager)
 
@@ -45,6 +45,7 @@ feature "Manager creates and employee spec" do
     click_on "Create"
 
     expect(page).to have_content "Namecan't be blank"
+    expect(page).to have_content "Passwordcan't be blank"
   end
 
 end

@@ -11,6 +11,7 @@ class Employee < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
   validates_confirmation_of :password, on: :create
+  validates_presence_of :password, on: :create
   validates_presence_of :status
   validates :salary,
     presence: true,
@@ -51,6 +52,6 @@ class Employee < ActiveRecord::Base
   end
 
   def convert_salary
-    self.salary = self.salary.to_f * 10
+    self.salary = self.salary.to_f * 100
   end
 end

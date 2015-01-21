@@ -4,14 +4,14 @@ feature "Manager updates an item" do
 
   before(:each) do
     FactoryGirl.create(:restaurant)
-    @manager = FactoryGirl.create(:employee, status: "Manager")
+    @manager = factory_for_manager
     @item = FactoryGirl.create(:item)
   end
 
   scenario "must be a manager" do
     visit edit_item_path(@item)
     expect(page).to have_content "Please Sign In"
-    employee = FactoryGirl.create(:employee)
+    employee = factory_for_employee
     sign_in_as(employee)
     visit edit_item_path(@item)
     expect(page).to have_content "You are not authorized for this"

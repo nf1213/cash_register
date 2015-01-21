@@ -9,7 +9,7 @@
     <% @items.each do |i| %>
       <p><%= i.name %>: <%= calculate_total_sold(i) %> sold, <%= sprintf('$%.2f', calculate_profit(i) / 100.00) %></p>
     <% end %>
-    <%= button_to "Clear Data", sales_destroy_all_path, class: "button alert"%>
+    <%= button_to "Clear Data", sales_destroy_all_path, class: "button alert", method: :post %>
     <div id="one-item"></div>
   </div>
 </div>

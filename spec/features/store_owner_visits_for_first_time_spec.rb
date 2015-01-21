@@ -9,8 +9,9 @@ feature 'Store owner visits homepage for the first time' do
     expect(page).to have_content 'Welcome'
 
     fill_in "Restaurant Name", with: restaurant.name
-    fill_in "Store Owner Name", with: manager.name
+    fill_in "Store Owner Name", with: "Nicole"
     fill_in "Password", with: manager.password
+    fill_in "Password confirmation", with: manager.password
     click_on "Create Restaurant"
 
     expect(page).to have_content restaurant.name

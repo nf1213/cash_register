@@ -4,7 +4,7 @@ feature "Employee clocks in or out" do
 
   before(:each) do
     FactoryGirl.create(:restaurant)
-    @employee = FactoryGirl.create(:employee)
+    @employee = factory_for_employee
   end
 
   scenario "successfully clocks in and out" do

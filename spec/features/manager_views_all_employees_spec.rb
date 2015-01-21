@@ -11,7 +11,7 @@ feature "Manager views all employees" do
 
     expect(page).to have_content "Please Sign In"
 
-    employee = FactoryGirl.create(:employee)
+    employee = factory_for_employee
     sign_in_as(employee)
 
     visit employees_path
@@ -20,9 +20,9 @@ feature "Manager views all employees" do
   end
 
   scenario "sees all their names, passwords, and statuses" do
-    manager = FactoryGirl.create(:employee, status: "Manager")
-    employee1 = FactoryGirl.create(:employee)
-    employee2 = FactoryGirl.create(:employee)
+    manager = factory_for_manager
+    employee1 = factory_for_employee
+    employee2 = factory_for_employee2
     sign_in_as(manager)
 
     visit employees_path
@@ -30,8 +30,6 @@ feature "Manager views all employees" do
     expect(page).to have_content employee1.name
     expect(page).to have_content employee2.name
     expect(page).to have_content manager.name
-    expect(page).to have_content employee1.password
-    expect(page).to have_content manager.password
     expect(page).to have_content employee2.status
   end
 

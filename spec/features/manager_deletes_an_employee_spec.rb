@@ -4,11 +4,11 @@ feature "Mangaer deletes an employee" do
 
   before(:each) do
     FactoryGirl.create(:restaurant)
-    @manager = FactoryGirl.create(:employee, status:"Manager")
+    @manager = factory_for_manager
   end
 
   scenario "must be a manager" do
-    employee = FactoryGirl.create(:employee)
+    employee = factory_for_employee
     sign_in_as(employee)
 
     visit employees_path
@@ -19,13 +19,14 @@ feature "Mangaer deletes an employee" do
   scenario "can't delete themselves" do
     sign_in_as(@manager)
 
-    visit edit_employee_path(@manager)
+    visit employees_path
+    click_on @manager.name
 
     expect(page).to_not have_content "Delete"
   end
 
   scenario "deletes an employee" do
-    employee = FactoryGirl.create(:employee)
+    employee = factory_for_employee
     sign_in_as(@manager)
 
     visit employees_path

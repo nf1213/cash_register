@@ -7,7 +7,7 @@ feature "Manager creates a modification" do
   end
 
   scenario 'must be a manager' do
-    employee = FactoryGirl.create(:employee)
+    employee = factory_for_employee
     sign_in_as(employee)
 
     visit new_modification_path
@@ -15,7 +15,7 @@ feature "Manager creates a modification" do
   end
 
   scenario "provides a valid name" do
-    manager = FactoryGirl.create(:employee, status:"Manager")
+    manager = factory_for_manager
     sign_in_as(manager)
 
     modification = FactoryGirl.build(:modification)
@@ -30,7 +30,7 @@ feature "Manager creates a modification" do
   end
 
   scenario "provides an invalid name" do
-    manager = FactoryGirl.create(:employee, status:"Manager")
+    manager = factory_for_manager
     sign_in_as(manager)
 
     existing = FactoryGirl.create(:modification)
