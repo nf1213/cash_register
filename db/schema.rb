@@ -11,22 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150118150318) do
+ActiveRecord::Schema.define(version: 20150121002321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "employees", force: true do |t|
-    t.string   "name",                          null: false
-    t.string   "status",                        null: false
-    t.string   "password",                      null: false
+    t.string   "name",                               null: false
+    t.string   "status",                             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "signed_in",     default: false
+    t.boolean  "signed_in",          default: false
     t.integer  "restaurant_id"
-    t.integer  "salary",        default: 800
+    t.integer  "salary",             default: 800
     t.integer  "current_shift"
     t.integer  "current_sale"
+    t.string   "encrypted_password"
+    t.string   "salt"
   end
 
   create_table "items", force: true do |t|

@@ -1,4 +1,6 @@
 class Employee < ActiveRecord::Base
+  attr_accessor :password
+  
   belongs_to :restaurant
   has_many :shifts
   has_many :sales
@@ -6,6 +8,7 @@ class Employee < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
   validates_presence_of :password
+  validates :password, :confirmation => true
   validates_presence_of :status
   validates :salary,
     presence: true,
