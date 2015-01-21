@@ -13,6 +13,7 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
+    @employee.salary = @employee.salary.to_f * 100
     if @employee.save
       redirect_to root_path, notice: "New employee created: #{@employee.name}"
     else
@@ -32,6 +33,7 @@ class EmployeesController < ApplicationController
   def update
     @employee = Employee.find(params[:id])
     @employee.update(employee_params)
+    @employee.salary = @employee.salary.to_f * 100
     if @employee.save
       redirect_to employees_path, notice: "Employee updated"
     else

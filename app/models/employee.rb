@@ -1,7 +1,7 @@
 class Employee < ActiveRecord::Base
   attr_accessor :password
 
-  before_save :encrypt_password, :convert_salary
+  before_save :encrypt_password
   after_save :clear_password
 
   belongs_to :restaurant
@@ -49,9 +49,5 @@ class Employee < ActiveRecord::Base
 
   def clear_password
     self.password = nil
-  end
-
-  def convert_salary
-    self.salary = self.salary.to_f * 100
   end
 end
