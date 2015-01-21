@@ -28,6 +28,7 @@ feature "Manager creates and employee spec" do
     fill_in "Password", with: 55555
     fill_in "Confirm", with: 55555
     select "Employee", from: "Status"
+    fill_in "Salary", with: 9.00
 
     click_on "Create"
 
