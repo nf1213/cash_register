@@ -3,7 +3,6 @@ module ApplicationHelper
     if session[:user_id]
       Employee.find(session[:user_id])
     end
-    # Employee.find_by signed_in: true
   end
 
   def calculate_profit(item)
@@ -30,5 +29,17 @@ module ApplicationHelper
     end
 
     return sold
+  end
+
+  def current_sale
+    if current_employee
+      if !current_employee.current_sale
+        sale = Sale.create(employee: current_employee)
+        current_employee.update(current_sale: sale.id )
+        sale
+      else
+        Sale.find(current_employee.current_sale)
+      end
+    end
   end
 end
