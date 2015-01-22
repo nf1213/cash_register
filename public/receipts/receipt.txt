@@ -1,5 +1,5 @@
-Nicole's Restaurant
+Factory Girl's Food
 -------------------------
-Soda	$1.99
+1Pizza	$10.00
 -------------------------
-Total: $1.99
+Total: $10.00

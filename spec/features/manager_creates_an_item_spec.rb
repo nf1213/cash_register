@@ -44,7 +44,7 @@ feature 'Manager creates an item' do
     click_on "Create Item"
 
     expect(page).to have_content "Namecan't be blank"
-    expect(page).to have_content "Pricecan't be blank"
+    expect(page).to have_content "Pricemust be greater than $0.00"
 
   end
 
