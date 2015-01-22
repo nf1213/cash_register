@@ -6,12 +6,12 @@ class SalesController < ApplicationController
   def update
     @sale = Sale.find(params[:id])
     current_employee.update(current_sale: nil)
-    print_reciept(@sale)
+    print_receipt(@sale)
     redirect_to root_path
   end
 
-  def print_reciept(sale)
-    dir = "public/reciepts/reciept.txt"
+  def print_receipt(sale)
+    dir = "public/receipts/receipt.txt"
     File.open(dir, "w") do |f|
       f.puts Restaurant.first.name
       f.puts "-------------------------"
