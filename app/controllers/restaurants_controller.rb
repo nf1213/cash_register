@@ -1,4 +1,11 @@
 class RestaurantsController < ApplicationController
+  before_action :no_restaurant_exists
+
+  def no_restaurant_exists
+    if Restaurant.count > 0
+      redirect_to root_path, alert: "Restaurant already exists"
+    end
+  end
 
   def new
     @restaurant = Restaurant.new
