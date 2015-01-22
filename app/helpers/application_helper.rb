@@ -5,6 +5,12 @@ module ApplicationHelper
     end
   end
 
+  def current_restaurant
+    if session[:restaurant_id]
+      Restaurant.find(session[:restaurant_id])
+    end
+  end
+
   def calculate_profit(item)
     total = 0
     item.sale_items.each do |s|

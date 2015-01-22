@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
   before_action :must_be_manager, only: [:new, :create, :index, :destroy, :edit, :update, :payroll]
 
   def index
-    @employees = Employee.all
+    @employees = current_restaurant.employees
   end
 
   def new
@@ -89,7 +89,7 @@ class EmployeesController < ApplicationController
   end
 
   def clock_in(employee)
-    shift = Shift.create(employee: employee, clock_in: Time.now)
+    shift = Shift.create(employee: employee, clock_in: Time.now, restaurant_id: current_restaurant.id)
     employee.update(current_shift: shift.id)
   end
 
@@ -102,7 +102,7 @@ class EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:employee).permit(:name, :password, :password_confirmation, :status, :salary)
+    params.require(:employee).permit(:name, :password, :password_confirmation, :status, :salary, :restaurant_id)
   end
 
 end

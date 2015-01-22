@@ -1,47 +1,11 @@
 <div class="row">
   <div class="columns small-12">
-    <h1>Welcome!</h1>
-    <%= form_for @restaurant do |f| %>
-      <% if @restaurant.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
-          <ul>
-            <% @restaurant.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
+    <h1>Welcome! Create Your Restaurant!</h1>
+      <%= simple_form_for @restaurant do |f| %>
+        <%= f.input :name, label: "Restaurant Name" %>
+        <%= f.input :password %>
+        <%= f.input :password_confirmation, label: "Confirm" %>
+        <%= f.button :submit, "Create Restaurant", class: "expand" %>
       <% end %>
-
-      <div class="field">
-        <%= f.label :name, "Restaurant Name"%><br>
-        <%= f.text_field :name %>
-      </div>
-
-      <%= f.fields_for :employees, Employee.new do |ff| %>
-        <div class="field">
-          <%= ff.label :name, "Store Owner Name:" %>
-          <%= ff.text_field :name %>
-        </div>
-
-        <div class="field">
-          <%= ff.label :password %>
-          <%= ff.text_field :password %>
-        </div>
-
-        <div class="field">
-          <%= ff.label :password_confirmation %>
-          <%= ff.text_field :password_confirmation %>
-        </div>
-
-        <div class="field">
-          <%= ff.hidden_field :status, value: "Manager" %>
-        </div>
-      <% end %>
-
-      <div class="actions">
-        <%= f.submit "Create Restaurant", class: "button expand" %>
-      </div>
-    <% end %>
   </div>
 </div>

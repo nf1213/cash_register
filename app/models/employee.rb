@@ -17,14 +17,6 @@ class Employee < ActiveRecord::Base
     presence: true,
     numericality: { greater_than: 0, message: "must be greater than $0.00" }
 
-  def self.names
-    names = []
-    Employee.all.each do |e|
-      names << e.name
-    end
-    names
-  end
-
   def encrypt_password
     if password.present?
       if self.salt.nil?

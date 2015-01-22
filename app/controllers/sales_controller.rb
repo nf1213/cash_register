@@ -33,12 +33,12 @@ class SalesController < ApplicationController
   end
 
   def index
-    @sales = Sale.all
-    @items = Item.all
+    @sales = current_restaurant.sales
+    @items = current_restaurant.items
   end
 
   def destroy_all
-    Sale.all.each do |s|
+    current_restaurant.sales.each do |s|
       e = Employee.find(s.employee_id)
       if e.current_sale != s.id
         s.destroy

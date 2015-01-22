@@ -10,9 +10,9 @@
 <nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
-      <% if Restaurant.count > 0 %>
+      <% if current_restaurant %>
         <h1>
-          <%= link_to Restaurant.first.name, root_path %>
+          <%= link_to current_restaurant.name, root_path %>
         </h1>
       <% end %>
     </li>

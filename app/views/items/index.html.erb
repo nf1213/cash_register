@@ -1,7 +1,7 @@
 <div class="row">
   <div id="buttons" class="columns small-12 medium-6 large-8">
     <% @items.each do |item| %>
-      <%= form_for(:sale_item, url: sale_items_path) do |f| %>
+      <%= form_for(:sale_item, url: sale_items_path(current_restaurant)) do |f| %>
         <%= f.hidden_field :item_id, value: item.id %>
         <%= f.submit "#{item.name}", class: "button" %>
       <% end %>

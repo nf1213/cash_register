@@ -7,6 +7,7 @@
       <%= f.input :password_confirmation, label: "Confirm" %>
       <%= f.input :status, collection: ["Employee", "Manager"] %>
       <%= f.input :salary %>
+      <%= f.hidden_field :restaurant_id, value: current_restaurant.id
       <%= f.button :submit, "Create", class: "expand" %>
     <% end %>
   </div>

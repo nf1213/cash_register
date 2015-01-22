@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :must_be_manager, only: [:new, :create, :edit, :edit_index, :update, :destroy]
 
   def index
-    @items = Item.all
+    @items = current_restaurant.items
     @sale = current_sale
   end
 
@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    price = params[:item][:price].to_f * 100
+    @item.price = params[:item][:price].to_f * 100
     if @item.save
       redirect_to root_path
     else
@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
   end
 
   def edit_index
-    @items = Item.all
+    @items = current_restaurant.items
   end
 
   def update
@@ -48,6 +48,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :price)
+    params.require(:item).permit(:name, :price, :restaurant_id)
   end
 end
