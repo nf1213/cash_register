@@ -1,7 +1,6 @@
 class ModificationOption < ActiveRecord::Base
   belongs_to :item
   belongs_to :modification
-  belongs_to :restaurant
 
   validates :item,
     presence: true,

@@ -5,10 +5,14 @@ class ModificationOptionsController < ApplicationController
 
   def new
     @modification_option = ModificationOption.new
+    @options = current_restaurant.modifications
+    @items = current_restaurant.items
   end
 
   def inverse_new
     @modification_option = ModificationOption.new
+    @options = current_restaurant.modifications
+    @items = current_restaurant.items
   end
 
   def create
@@ -19,7 +23,7 @@ class ModificationOptionsController < ApplicationController
       redirect_to new_modification_option_path, alert: "Please select some modifications for your item"
     else
       modifications.each do |m|
-        @modification_option = ModificationOption.new(item_id: item, modification_id: m, restaurant_id: current_restaurant.id)
+        @modification_option = ModificationOption.new(item_id: item, modification_id: m)
         @modification_option.save
       end
       redirect_to static_pages_manager_functions_path, notice: "Modification Options Saved"
@@ -34,7 +38,7 @@ class ModificationOptionsController < ApplicationController
       redirect_to modification_options_inverse_new_path, alert: "Please select some items to add this modification to"
     else
       items.each do |i|
-        @modification_option = ModificationOption.new(item_id: i, modification_id: modification, restaurant_id: current_restaurant.id)
+        @modification_option = ModificationOption.new(item_id: i, modification_id: modification)
         @modification_option.save
       end
       redirect_to static_pages_manager_functions_path, notice: "Modification Options Saved"

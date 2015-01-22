@@ -7,7 +7,6 @@ class Restaurant < ActiveRecord::Base
   has_many :employees
   has_many :items
   has_many :modifications
-  has_many :modification_options
   has_many :sales
   has_many :sale_items
   has_many :sale_item_modifications

@@ -16,6 +16,12 @@ FactoryGirl.define do
 
   factory :restaurant do
     name "Factory Girl's Food"
+    password 333333
+
+    after(:create) do |r|
+      salt = BCrypt::Engine.generate_salt
+      r.encrypted_password = BCrypt::Engine.hash_secret(r.password, salt)
+    end
   end
 
   factory :employee do
@@ -23,6 +29,12 @@ FactoryGirl.define do
     status "Employee"
     password 333333
     salary 800
+    restaurant
+
+    after(:create) do |e|
+      salt = BCrypt::Engine.generate_salt
+      e.encrypted_password = BCrypt::Engine.hash_secret(e.password, salt)
+    end
   end
 
   factory :sale do

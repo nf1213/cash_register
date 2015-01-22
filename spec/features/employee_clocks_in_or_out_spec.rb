@@ -1,10 +1,11 @@
 require "rails_helper"
 
-feature "Employee clocks in or out" do
+feature "Employee clocks in or out", focus: true do
 
   before(:each) do
-    FactoryGirl.create(:restaurant)
-    @employee = factory_for_employee
+    restaurant = FactoryGirl.create(:restaurant)
+    sign_in_restaurant(restaurant)
+    @employee = FactoryGirl.create(:employee, restaurant: restaurant)
   end
 
   scenario "successfully clocks in and out" do

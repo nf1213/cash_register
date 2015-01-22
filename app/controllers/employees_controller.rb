@@ -64,7 +64,7 @@ class EmployeesController < ApplicationController
   end
 
   def payroll
-    @employees = Employee.all
+    @employees = current_restaurant.employees
   end
 
   def clock_in_out
