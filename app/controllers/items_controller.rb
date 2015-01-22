@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    price = params[:item][:price].to_f * 100
+    @item.price = params[:item][:price].to_f * 100
     if @item.save
       redirect_to root_path
     else
