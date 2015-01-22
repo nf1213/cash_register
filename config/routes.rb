@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :items, except: [:show]
 
-  resources :restaurants
+  resources :restaurants, only: [:new, :create]
 
   resources :employees, except: [:show]
 
