@@ -12,17 +12,15 @@ Rails.application.routes.draw do
   get 'items/edit_index'
   post 'sales/destroy_all'
 
-  resources :items, except: [:show]
-
-  resources :restaurants, only: [:new, :create]
-
-  resources :employees, except: [:show]
-
-  resources :sale_items, only: [:create, :destroy, :show]
-  resources :sales, only: [:update, :index, :destroy, :destroy_all]
-  resources :modifications, except: [:show]
-  resources :modification_options, only: [:new, :create]
-  resources :sale_item_modifications, only: [:new, :create, :destroy]
-
+  resources :restaurants, only: [:new, :create] do
+    resources :items, except: [:show]
+    resources :sale_items, only: [:create, :destroy, :show]
+    resources :sales, only: [:update, :index, :destroy, :destroy_all]
+    resources :modifications, except: [:show]
+    resources :modification_options, only: [:new, :create]
+    resources :sale_item_modifications, only: [:new, :create, :destroy]
+    resources :employees, except: [:show]
+  end
+  
   root 'items#index'
 end
