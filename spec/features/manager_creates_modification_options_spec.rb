@@ -3,15 +3,16 @@ require "rails_helper"
 feature "Manager creates modification options" do
 
   before(:each) do
-    @restaurant = FactoryGirl.create(:restaurant)
-    @item = FactoryGirl.create(:item)
-    @item2 = FactoryGirl.create(:item)
-    @modification = FactoryGirl.create(:modification)
-    @modification2 = FactoryGirl.create(:modification)
+    @restaurant = factory_for_restaurant
+    sign_in_restaurant(@restaurant)
+    @item = FactoryGirl.create(:item, restaurant: @restaurant)
+    @item2 = FactoryGirl.create(:item, restaurant: @restaurant)
+    @modification = FactoryGirl.create(:modification, restaurant: @restaurant)
+    @modification2 = FactoryGirl.create(:modification, restaurant: @restaurant)
   end
 
   scenario 'must be a manager' do
-    employee = factory_for_employee
+    employee = factory_for_employee(@restaurant)
     sign_in_as(employee)
 
     visit new_modification_path
@@ -19,7 +20,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'successfully adds multiple options to an item' do
-    manager = factory_for_manager
+    manager = factory_for_manager(@restaurant)
     sign_in_as(manager)
 
     visit new_modification_option_path
@@ -32,7 +33,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'does not provide any modifications to add' do
-    manager = factory_for_manager
+    manager = factory_for_manager(@restaurant)
     sign_in_as(manager)
 
     visit new_modification_option_path
@@ -42,7 +43,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'successfully adds an option to multiple items' do
-    manager = factory_for_manager
+    manager = factory_for_manager(@restaurant)
     sign_in_as(manager)
 
     visit modification_options_inverse_new_path
@@ -55,7 +56,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'does not provide any items to add modifications to' do
-    manager = factory_for_manager
+    manager = factory_for_manager(@restaurant)
     sign_in_as(manager)
 
     visit modification_options_inverse_new_path

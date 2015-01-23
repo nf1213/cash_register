@@ -31,11 +31,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  #change to current employee's sale
   def current_sale
     if current_employee
       if !current_employee.current_sale
-        sale = Sale.create(employee: current_employee)
+        sale = Sale.create(employee: current_employee, restaurant: current_restaurant)
         current_employee.update(current_sale: sale.id )
         sale
       else

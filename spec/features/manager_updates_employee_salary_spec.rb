@@ -3,9 +3,10 @@ require "rails_helper"
 feature "Manager updates an employee's salary" do
 
   before(:each) do
-    FactoryGirl.create(:restaurant)
-    @manager = factory_for_manager
-    @employee = factory_for_employee
+    restaurant = factory_for_restaurant
+    sign_in_restaurant(restaurant)
+    @manager = factory_for_manager(restaurant)
+    @employee = factory_for_employee(restaurant)
   end
 
   scenario "must be a manager" do
