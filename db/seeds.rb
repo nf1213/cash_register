@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Item.update_all(restauraunt_id: 1)
+Item.update_all(restaurant_id: 1)
 Modification.update_all(restaurant_id: 1)
 Employee.update_all(restaurant_id: 1)
 Shift.update_all(restaurant_id: 1)
