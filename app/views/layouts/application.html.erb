@@ -13,7 +13,7 @@
     <li class="name has-dropdown not-click">
       <% if current_restaurant %>
         <h1>
-          <%= link_to current_restaurant.name, root_path %>
+          <%= link_to current_restaurant.name, root_path %> <%= current_restaurant.id %>
         </h1>
         <ul class="dropdown">
           <li><%= link_to "Sign Out Restaurant", restaurants_sign_out_path %></li>
