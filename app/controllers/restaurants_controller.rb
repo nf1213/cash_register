@@ -10,6 +10,7 @@ class RestaurantsController < ApplicationController
     if @restaurant.save && @employee.save
       @employee = Employee.new(name: "Store Owner", password: @restaurant.password, status: "Manager", salary: 1000, restaurant_id: @restaurant.id)
       if @employee.save
+        session[:user_id] = @employee.id
         redirect_to root_path, notice: 'Restaurant was successfully created, Store Owner user created with same password'
       else
         render :new

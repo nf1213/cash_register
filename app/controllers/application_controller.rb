@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
   def authenticate
     if current_employee
       if current_employee.restaurant_id != current_restaurant.id
-        redirect_to root_path, alert: "Something is wrong here..."
+        session[:restaurant_id] = nil
+        session[:user_id] = nil
+        redirect_to restaurant_sign_in_path, alert: "Please sign in restaurant"
       end
     else
       redirect_to employees_sign_in_path, alert: "Please Sign In"
