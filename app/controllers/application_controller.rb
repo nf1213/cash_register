@@ -4,14 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def authenticate
-    unless current_employee
+    if current_employee
+      if current_employee.restaurant_id != current_restaurant.id
+        redirect_to root_path, alert: "Something is wrong here..."
+      end
+    else
       redirect_to employees_sign_in_path, alert: "Please Sign In"
     end
   end
 
   def restaurant_exists?
-    unless Restaurant.count > 0
-      redirect_to new_restaurant_path
+    unless session[:restaurant_id]
+      redirect_to restaurants_sign_in_path, alert: "Please Sign in with your Restaurant's credentials"
     end
   end
 
@@ -27,16 +31,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  #change to current employee's sale
   def current_sale
     if current_employee
       if !current_employee.current_sale
-        sale = Sale.create(employee: current_employee)
+        sale = Sale.create(employee: current_employee, restaurant: current_restaurant)
         current_employee.update(current_sale: sale.id )
         sale
       else
         Sale.find(current_employee.current_sale)
       end
+    end
+  end
+
+  def current_restaurant
+    if session[:restaurant_id]
+      Restaurant.find(session[:restaurant_id])
     end
   end
 end

@@ -33,7 +33,7 @@ class SaleItemModificationsController < ApplicationController
   private
 
   def s_i_modification_params
-    params.require(:sale_item_modification).permit(:sale_item_id, :modification_id)
+    params.require(:sale_item_modification).permit(:sale_item_id, :modification_id, :restaurant_id)
   end
 
 end

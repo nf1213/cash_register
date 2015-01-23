@@ -5,6 +5,12 @@ module ApplicationHelper
     end
   end
 
+  def current_restaurant
+    if session[:restaurant_id]
+      Restaurant.find(session[:restaurant_id])
+    end
+  end
+
   def calculate_profit(item)
     total = 0
     item.sale_items.each do |s|
@@ -34,7 +40,7 @@ module ApplicationHelper
   def current_sale
     if current_employee
       if !current_employee.current_sale
-        sale = Sale.create(employee: current_employee)
+        sale = Sale.create(employee: current_employee, restaurant: restaurant)
         current_employee.update(current_sale: sale.id )
         sale
       else

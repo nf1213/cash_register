@@ -5,10 +5,14 @@ class ModificationOptionsController < ApplicationController
 
   def new
     @modification_option = ModificationOption.new
+    @options = current_restaurant.modifications
+    @items = current_restaurant.items
   end
 
   def inverse_new
     @modification_option = ModificationOption.new
+    @options = current_restaurant.modifications
+    @items = current_restaurant.items
   end
 
   def create

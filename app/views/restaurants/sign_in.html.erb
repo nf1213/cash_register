@@ -1,10 +1,10 @@
 <div class="row">
   <div class="columns small-12">
-    <h4>Time Clock</h4>
-    <%= form_for :employee, :url => {:action => 'clock'} do |f| %>
+    <h4>Sign In Restaurant</h4>
+    <%= form_for :restaurant, :url => {:action => 'sign_in_restaurant'} do |f| %>
     <div class="field">
       <%= f.label :name %><br />
-      <%= f.select :name, current_restaurant.employees.collect {|e| [ e.name ] } %>
+      <%= f.text_field :name %>
     </div>
 
     <div class="field">
@@ -13,7 +13,7 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "Clock in/out", class: "button expand" %>
+      <%= f.submit "Sign in", class: "button expand" %>
     </div>
     <% end %>
   </div>

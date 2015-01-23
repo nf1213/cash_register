@@ -16,6 +16,7 @@ FactoryGirl.define do
 
   factory :restaurant do
     name "Factory Girl's Food"
+    password 333333
   end
 
   factory :employee do
@@ -23,6 +24,7 @@ FactoryGirl.define do
     status "Employee"
     password 333333
     salary 800
+    restaurant
   end
 
   factory :sale do
@@ -30,7 +32,7 @@ FactoryGirl.define do
   end
 
   factory :sale_item do
-    name "Pizza"
+    sequence(:name) {|n| "#{n}Pizza"}
     price 1000
     item
     sale

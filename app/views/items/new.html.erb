@@ -4,6 +4,7 @@
     <%= simple_form_for @item do |f| %>
       <%= f.input :name %>
       <%= f.input :price %>
+      <%= f.hidden_field :restaurant_id, value: current_restaurant.id %>
       <%= f.button :submit, "Create Item", class: "expand" %>
     <% end %>
   </div>
