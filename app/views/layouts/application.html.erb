@@ -11,7 +11,7 @@
   <section class="top-bar-section">
   <ul class="title-area">
     <li class="name has-dropdown not-click">
-      <h1><%= Restaurant.find_by_name("Nicole's Restaurant").id</h1>
+      <h1><%= Restaurant.find_by_name("Nicole's Restaurant").id %></h1>
       <% if current_restaurant %>
         <h1>
           <%= link_to current_restaurant.name, root_path %>
