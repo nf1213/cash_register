@@ -3,7 +3,8 @@ require "rails_helper"
 feature "Manager views all employees" do
 
   before(:each) do
-    FactoryGirl.create(:restaurant)
+    @restaurant = factory_for_restaurant
+    sign_in_restaurant(@restaurant)
   end
 
   scenario "must be manager" do
@@ -11,7 +12,7 @@ feature "Manager views all employees" do
 
     expect(page).to have_content "Please Sign In"
 
-    employee = factory_for_employee
+    employee = factory_for_employee(@restaurant)
     sign_in_as(employee)
 
     visit employees_path
@@ -20,9 +21,9 @@ feature "Manager views all employees" do
   end
 
   scenario "sees all their names, passwords, and statuses" do
-    manager = factory_for_manager
-    employee1 = factory_for_employee
-    employee2 = factory_for_employee2
+    manager = factory_for_manager(@restaurant)
+    employee1 = factory_for_employee(@restaurant)
+    employee2 = factory_for_employee2(@restaurant)
     sign_in_as(manager)
 
     visit employees_path

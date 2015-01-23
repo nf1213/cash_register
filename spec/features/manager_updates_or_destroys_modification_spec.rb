@@ -3,13 +3,14 @@ require "rails_helper"
 feature "Manager updates or destroys a modification" do
 
   before(:each) do
-    FactoryGirl.create(:restaurant)
-    @manager = factory_for_manager
-    @modification = FactoryGirl.create(:modification)
+    @restaurant = factory_for_restaurant
+    sign_in_restaurant(@restaurant)
+    @manager = factory_for_manager(@restaurant)
+    @modification = FactoryGirl.create(:modification, restaurant: @restaurant)
   end
 
   scenario "must be a manager" do
-    employee = factory_for_employee
+    employee = factory_for_employee(@restaurant)
     sign_in_as(employee)
 
     visit edit_modification_path(@modification)

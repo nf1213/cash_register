@@ -4,12 +4,12 @@
     <%= form_for @modification_option do |f| %>
       <div class="field">
         <%= f.label :item %>
-        <%= f.select :item,  Item.all.collect {|i| [ i.name, i.id ] } %>
+        <%= f.select :item,  @items.collect {|i| [ i.name, i.id ] } %>
       </div>
 
       <div class="field">
         <%= f.label :modification, "Modifications" %>
-        <%= f.collection_check_boxes(:modification_ids, Modification.all, :id, :name) %>
+        <%= f.collection_check_boxes(:modification_ids, @options, :id, :name) %>
       </div>
 
       <div class="actions">

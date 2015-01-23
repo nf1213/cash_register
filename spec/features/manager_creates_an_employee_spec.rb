@@ -3,11 +3,12 @@ require "rails_helper"
 feature "Manager creates and employee spec" do
 
   before(:each) do
-    @restaurant = FactoryGirl.create(:restaurant)
+    @restaurant = factory_for_restaurant
+    sign_in_restaurant(@restaurant)
   end
 
   scenario "Manager must be a signed in as a manager" do
-    employee = factory_for_employee
+    employee = factory_for_employee(@restaurant)
 
     sign_in_as(employee)
 
@@ -18,7 +19,7 @@ feature "Manager creates and employee spec" do
   end
 
   scenario "Manager provides valid information" do
-    manager = factory_for_manager
+    manager = factory_for_manager(@restaurant)
 
     sign_in_as(manager)
 
@@ -37,7 +38,7 @@ feature "Manager creates and employee spec" do
   end
 
   scenario "Manager provides invalid information" do
-    manager = factory_for_manager
+    manager = factory_for_manager(@restaurant)
 
     sign_in_as(manager)
 

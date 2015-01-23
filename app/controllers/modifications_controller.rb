@@ -4,7 +4,7 @@ class ModificationsController < ApplicationController
   before_action :must_be_manager
 
   def index
-    @modifications = Modification.all
+    @modifications = current_restaurant.modifications
   end
 
   def edit
@@ -46,6 +46,6 @@ class ModificationsController < ApplicationController
   private
 
   def modification_params
-    params.require(:modification).permit(:name, :price, :limit)
+    params.require(:modification).permit(:name, :price, :limit, :restaurant_id)
   end
 end

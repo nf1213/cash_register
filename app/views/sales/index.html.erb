@@ -36,7 +36,7 @@ $(function () {
     },
 
     series: [
-    <% Item.all.each do |i| %>
+    <% current_restaurant.items.each do |i| %>
     {
       name: "<%= i.name %>",
       data: <%= get_sold_by_date(i) %>,

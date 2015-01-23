@@ -4,12 +4,12 @@
     <%= form_for @modification_option,  url: {action: "inverse_create"} do |f| %>
     <div class="field">
       <%= f.label :modification %>
-      <%= f.select :modification,  Modification.all.collect {|i| [ i.name, i.id ] } %>
+      <%= f.select :modification,  @options.collect {|i| [ i.name, i.id ] } %>
     </div>
 
     <div class="field">
       <%= f.label :item, "Items" %>
-      <%= f.collection_check_boxes(:item_ids, Item.all, :id, :name) %>
+      <%= f.collection_check_boxes(:item_ids, @items, :id, :name) %>
     </div>
 
     <div class="actions">
