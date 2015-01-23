@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122222707) do
+ActiveRecord::Schema.define(version: 20150123135638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20150122222707) do
     t.string   "salt"
   end
 
+  add_index "employees", ["name", "restaurant_id"], name: "index_employees_on_name_and_restaurant_id", unique: true, using: :btree
+
   create_table "items", force: true do |t|
     t.string   "name",                      null: false
     t.integer  "price",                     null: false
@@ -38,7 +40,7 @@ ActiveRecord::Schema.define(version: 20150122222707) do
     t.integer  "restaurant_id", default: 2
   end
 
-  add_index "items", ["name"], name: "index_items_on_name", unique: true, using: :btree
+  add_index "items", ["name", "restaurant_id"], name: "index_items_on_name_and_restaurant_id", unique: true, using: :btree
 
   create_table "modification_options", force: true do |t|
     t.integer  "item_id",         null: false
@@ -58,7 +60,7 @@ ActiveRecord::Schema.define(version: 20150122222707) do
     t.integer  "restaurant_id", default: 2
   end
 
-  add_index "modifications", ["name"], name: "index_modifications_on_name", unique: true, using: :btree
+  add_index "modifications", ["name", "restaurant_id"], name: "index_modifications_on_name_and_restaurant_id", unique: true, using: :btree
 
   create_table "restaurants", force: true do |t|
     t.string   "name"

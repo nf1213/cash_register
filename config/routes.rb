@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'restaurants/sign_in'
   post 'restaurants/sign_in_restaurant'
   get 'employees/sign_out'
+  get 'restaurants/sign_out'
   get '/modification_options/inverse_new'
   post '/modification_options/inverse_create'
   get 'employees/payroll'

@@ -8,15 +8,20 @@
 <body>
 
 <nav class="top-bar" data-topbar>
+  <section class="top-bar-section">
   <ul class="title-area">
-    <li class="name">
+    <li class="name has-dropdown not-click">
       <% if current_restaurant %>
         <h1>
           <%= link_to current_restaurant.name, root_path %>
         </h1>
+        <ul class="dropdown">
+          <li><%= link_to "Sign Out Restaurant", restaurants_sign_out_path %></li>
+        </ul>
       <% end %>
     </li>
   </ul>
+  </section>
   <section class="top-bar-section">
     <ul class="right">
       <li class="divider"></li>

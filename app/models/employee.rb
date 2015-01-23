@@ -8,8 +8,10 @@ class Employee < ActiveRecord::Base
   has_many :shifts
   has_many :sales
 
-  validates_presence_of :name
-  validates_uniqueness_of :name
+  validates :name,
+  presence: true,
+  uniqueness: { scope: :restaurant_id }
+
   validates_confirmation_of :password, on: :create
   validates_presence_of :password, on: :create
   validates_presence_of :status

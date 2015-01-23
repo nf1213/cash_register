@@ -34,6 +34,12 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def sign_out
+    session[:user_id] = nil
+    session[:restaurant_id] = nil
+    redirect_to restaurants_sign_in_path, notice: "Signed out of restaurant"
+  end
+
   def restaurant_params
     params.require(:restaurant).permit(:name, :password, :password_confirmation)
   end
