@@ -9,8 +9,8 @@ class Employee < ActiveRecord::Base
   has_many :sales
 
   validates :name,
-  presence: true,
-  uniqueness: { scope: :restaurant_id }
+    presence: true,
+    uniqueness: { scope: :restaurant_id }
 
   validates_confirmation_of :password, on: :create
   validates_presence_of :password, on: :create

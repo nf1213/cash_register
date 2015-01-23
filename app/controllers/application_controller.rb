@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     if current_employee
-      if current_employee.restaurant_id != current_restaurant.id
+      if current_employee.restaurant_id != current_restaurant.id || current_restaurant == nil
         session[:restaurant_id] = nil
         session[:user_id] = nil
         redirect_to restaurant_sign_in_path, alert: "Please sign in restaurant"

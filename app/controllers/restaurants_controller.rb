@@ -6,14 +6,14 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-
+    pass = params[:restaurant][:password]
     if @restaurant.save
-      @employee = Employee.new(name: "Store Owner", password: @restaurant.password, status: "Manager", salary: 1000, restaurant_id: @restaurant.id)
+      @employee = Employee.new(name: "Store Owner", password: pass, password_confirmation: pass, status: "Manager", salary: 1000, restaurant_id: @restaurant.id)
       if @employee.save
         session[:user_id] = @employee.id
         redirect_to root_path, notice: 'Restaurant was successfully created, Store Owner user created with same password'
       else
-        render :new
+        redirect_to restaurants_sign_in_path, notice: "Something went wrong.."
       end
     else
       render :new
