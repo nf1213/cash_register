@@ -49,7 +49,7 @@ class EmployeesController < ApplicationController
   def sign_in_employee
     name = params[:employee][:name]
     password = params[:employee][:password]
-    user = Employee.authenticate(name, password)
+    user = Employee.authenticate(name, password, current_restaurant)
     if user
       session[:user_id] = user.id
       redirect_to root_path, notice: "Login success"
@@ -74,7 +74,7 @@ class EmployeesController < ApplicationController
   def clock
     name = params[:employee][:name]
     password = params[:employee][:password]
-    employee = Employee.authenticate(name, password)
+    employee = Employee.authenticate(name, password, current_restaurant)
     if employee
       if !employee.current_shift
         clock_in(employee)

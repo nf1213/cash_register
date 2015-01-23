@@ -28,8 +28,8 @@ class Employee < ActiveRecord::Base
     end
   end
 
-  def self.authenticate(name="", login_password="")
-    employee = Employee.find_by_name(name)
+  def self.authenticate(name="", login_password="", restaurant)
+    employee = Employee.find_by_name_and_restaurant_id(name, restaurant.id)
     if employee && employee.match_password(login_password)
       return employee
     else
