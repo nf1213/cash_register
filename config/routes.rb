@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'employees/clock'
   get 'items/edit_index'
   post 'sales/destroy_all'
+  post 'items/remove_modifications'
 
   resources :restaurants, only: [:new, :create, :sign_in, :sign_in_restaurant]
   resources :items, except: [:show]

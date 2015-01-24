@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @options = @item.modifications
   end
 
   def edit_index
@@ -40,6 +41,17 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def remove_modifications
+    modifications = params[:item][:modification_ids]
+    modifications.delete("")
+    item = params[:item][:item_id]
+    modifications.each do |m|
+      @modification_option = ModificationOption.find_by_item_id_and_modification_id(item, m)
+      @modification_option.destroy
+    end
+    redirect_to items_edit_index_path, notice: "Modifications Removed"
   end
 
   def destroy
