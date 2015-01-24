@@ -33,6 +33,7 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
+    @options = @item.modifications
     @item.update(item_params)
     price = params[:item][:price].to_f * 100
     @item.update(price: price)

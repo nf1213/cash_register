@@ -11,7 +11,7 @@
   </div>
   <div class="columns small-6">
     <h4>Remove Modifications</h4>
-    <%= form_for @item,  url: { action: "remove_modifications" }, html: {method: :post} do |f| %>
+    <%= form_for @item,  url: { action: "remove_modifications" }, html: { method: :post } do |f| %>
       <div class="field">
         <%= f.label :modification, "Modifications" %>
         <%= f.collection_check_boxes :modification_ids, @options, :id, :name, checked:[] %>
