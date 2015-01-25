@@ -28,13 +28,13 @@ $('#cash_out').click(function(){
     given = parseInt(prompt("Not enough, try again:")) * 100;
     remainder = given - total;
   }
-  var change = remainder / 100.00
-  change = "$" + change.toFixed(2)
+  var change = remainder / 100.00;
+  change = "$" + change.toFixed(2);
   while(remainder > 0) {
     for(var i = 0; i < COINS_AND_BILLS.length; i++) {
       var value = COINS_AND_BILLS[i];
       if(remainder >= value) {
-        v = value / 100.00
+        var v = value / 100.00;
         give.push("$" + v.toFixed(2));
         remainder = remainder - value;
         break;

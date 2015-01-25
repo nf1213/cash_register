@@ -1,4 +1,5 @@
 class Restaurant < ActiveRecord::Base
+  include User
   attr_accessor :password
 
   before_save :encrypt_password
@@ -17,15 +18,6 @@ class Restaurant < ActiveRecord::Base
   validates_confirmation_of :password, on: :create
   validates_presence_of :password, on: :create
 
-  def encrypt_password
-    if password.present?
-      if self.salt.nil?
-        self.salt = BCrypt::Engine.generate_salt
-      end
-      self.encrypted_password = BCrypt::Engine.hash_secret(password, salt)
-    end
-  end
-
   def self.authenticate(name="", login_password="")
     restaurant = Restaurant.find_by_name(name)
     if restaurant && restaurant.match_password(login_password)
@@ -33,13 +25,5 @@ class Restaurant < ActiveRecord::Base
     else
       return false
     end
-  end
-
-  def match_password(login_password="")
-    encrypted_password == BCrypt::Engine.hash_secret(login_password, salt)
-  end
-
-  def clear_password
-    self.password = nil
   end
 end

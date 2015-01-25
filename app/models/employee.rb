@@ -1,4 +1,5 @@
 class Employee < ActiveRecord::Base
+  include User
   attr_accessor :password
 
   before_save :encrypt_password
@@ -19,15 +20,6 @@ class Employee < ActiveRecord::Base
     presence: true,
     numericality: { greater_than: 0, message: "must be greater than $0.00" }
 
-  def encrypt_password
-    if password.present?
-      if self.salt.nil?
-        self.salt = BCrypt::Engine.generate_salt
-      end
-      self.encrypted_password = BCrypt::Engine.hash_secret(password, salt)
-    end
-  end
-
   def self.authenticate(name="", login_password="", restaurant)
     employee = Employee.find_by_name_and_restaurant_id(name, restaurant.id)
     if employee && employee.match_password(login_password)
@@ -35,13 +27,5 @@ class Employee < ActiveRecord::Base
     else
       return false
     end
-  end
-
-  def match_password(login_password="")
-    encrypted_password == BCrypt::Engine.hash_secret(login_password, salt)
-  end
-
-  def clear_password
-    self.password = nil
   end
 end
