@@ -3,13 +3,13 @@ require 'rails_helper'
 feature 'Manager creates an item' do
 
   before(:each) do
-    @restaurant = factory_for_restaurant
+    @restaurant = FactoryGirl.create(:restaurant)
     sign_in_restaurant(@restaurant)
     @item = FactoryGirl.build(:item)
   end
 
   scenario 'must be a manager' do
-    employee = factory_for_employee(@restaurant)
+    employee = FactoryGirl.create(:employee, restaurant: @restaurant)
     sign_in_as(employee)
 
     visit root_path
@@ -19,8 +19,8 @@ feature 'Manager creates an item' do
   end
 
   scenario 'fills out the form with valid attributes' do
-    employee = factory_for_manager(@restaurant)
-    sign_in_as(employee)
+    manager = FactoryGirl.create(:manager, restaurant: @restaurant)
+    sign_in_as(manager)
 
     visit root_path
 
@@ -37,8 +37,8 @@ feature 'Manager creates an item' do
   end
 
   scenario 'sees errors if no info is provided' do
-    employee = factory_for_manager(@restaurant)
-    sign_in_as(employee)
+    manager = FactoryGirl.create(:manager, restaurant: @restaurant)
+    sign_in_as(manager)
 
     visit new_item_path
 
@@ -51,8 +51,8 @@ feature 'Manager creates an item' do
 
   scenario 'sees errors if item already exists' do
     item = FactoryGirl.create(:item, restaurant: @restaurant)
-    employee = factory_for_manager(@restaurant)
-    sign_in_as(employee)
+    manager = FactoryGirl.create(:manager, restaurant: @restaurant)
+    sign_in_as(manager)
 
     visit new_item_path
 

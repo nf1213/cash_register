@@ -3,9 +3,9 @@ require "rails_helper"
 feature "Employee signs out" do
 
   scenario "." do
-    restaurant = factory_for_restaurant
+    restaurant = FactoryGirl.create(:restaurant)
     sign_in_restaurant(restaurant)
-    employee = factory_for_employee(restaurant)
+    employee = FactoryGirl.create(:employee, restaurant: restaurant)
 
     sign_in_as(employee)
 

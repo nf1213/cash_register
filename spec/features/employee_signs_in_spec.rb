@@ -3,17 +3,17 @@ require "rails_helper"
 feature "Employee signs in" do
 
   before(:each) do
-    @restaurant = factory_for_restaurant
+    @restaurant = FactoryGirl.create(:restaurant)
     sign_in_restaurant(@restaurant)
   end
 
   scenario "with valid credentials" do
-    employee = factory_for_employee(@restaurant)
+    employee = FactoryGirl.create(:employee, restaurant: @restaurant)
 
     visit employees_sign_in_path
 
     select employee.name, from: "Name"
-    fill_in "Password", with: password
+    fill_in "Password", with: employee.password
 
     click_on "Sign in"
 

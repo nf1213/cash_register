@@ -2,9 +2,9 @@ require 'rails_helper'
 
 feature 'Employee completes a transaction' do
   before(:each) do
-    @restaurant = factory_for_restaurant
+    @restaurant = FactoryGirl.create(:restaurant)
     sign_in_restaurant(@restaurant)
-    @employee = factory_for_employee(@restaurant)
+    @employee = FactoryGirl.create(:employee, restaurant: @restaurant)
     sign_in_as(@employee)
     @item = FactoryGirl.create(:item, restaurant: @restaurant)
   end
