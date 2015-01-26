@@ -11,8 +11,4 @@ module User
   def match_password(login_password="")
     encrypted_password == BCrypt::Engine.hash_secret(login_password, salt)
   end
-
-  def clear_password
-    self.password = nil
-  end
 end

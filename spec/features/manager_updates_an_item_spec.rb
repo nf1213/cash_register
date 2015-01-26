@@ -3,16 +3,16 @@ require "rails_helper"
 feature "Manager updates an item" do
 
   before(:each) do
-    @restaurant = factory_for_restaurant
+    @restaurant = FactoryGirl.create(:restaurant)
     sign_in_restaurant(@restaurant)
-    @manager = factory_for_manager(@restaurant)
+    @manager = FactoryGirl.create(:manager, restaurant: @restaurant)
     @item = FactoryGirl.create(:item, restaurant: @restaurant)
   end
 
   scenario "must be a manager" do
     visit edit_item_path(@item)
     expect(page).to have_content "Please Sign In"
-    employee = factory_for_employee(@restaurant)
+    employee = FactoryGirl.create(:employee, restaurant: @restaurant)
     sign_in_as(employee)
     visit edit_item_path(@item)
     expect(page).to have_content "You are not authorized for this"

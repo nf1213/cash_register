@@ -3,7 +3,7 @@ require "rails_helper"
 feature "Manager creates modification options" do
 
   before(:each) do
-    @restaurant = factory_for_restaurant
+    @restaurant = FactoryGirl.create(:restaurant)
     sign_in_restaurant(@restaurant)
     @item = FactoryGirl.create(:item, restaurant: @restaurant)
     @item2 = FactoryGirl.create(:item, restaurant: @restaurant)
@@ -12,7 +12,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'must be a manager' do
-    employee = factory_for_employee(@restaurant)
+    employee = FactoryGirl.create(:employee, restaurant: @restaurant)
     sign_in_as(employee)
 
     visit new_modification_path
@@ -20,7 +20,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'successfully adds multiple options to an item' do
-    manager = factory_for_manager(@restaurant)
+    manager = FactoryGirl.create(:manager, restaurant: @restaurant)
     sign_in_as(manager)
 
     visit new_modification_option_path
@@ -33,7 +33,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'does not provide any modifications to add' do
-    manager = factory_for_manager(@restaurant)
+    manager = FactoryGirl.create(:manager, restaurant: @restaurant)
     sign_in_as(manager)
 
     visit new_modification_option_path
@@ -43,7 +43,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'successfully adds an option to multiple items' do
-    manager = factory_for_manager(@restaurant)
+    manager = FactoryGirl.create(:manager, restaurant: @restaurant)
     sign_in_as(manager)
 
     visit modification_options_inverse_new_path
@@ -56,7 +56,7 @@ feature "Manager creates modification options" do
   end
 
   scenario 'does not provide any items to add modifications to' do
-    manager = factory_for_manager(@restaurant)
+    manager = FactoryGirl.create(:manager, restaurant: @restaurant)
     sign_in_as(manager)
 
     visit modification_options_inverse_new_path

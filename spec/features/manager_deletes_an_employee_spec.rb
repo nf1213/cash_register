@@ -3,13 +3,13 @@ require "rails_helper"
 feature "Mangaer deletes an employee" do
 
   before(:each) do
-    @restaurant = factory_for_restaurant
+    @restaurant = FactoryGirl.create(:restaurant)
     sign_in_restaurant(@restaurant)
-    @manager = factory_for_manager(@restaurant)
+    @manager = FactoryGirl.create(:manager, restaurant: @restaurant)
   end
 
   scenario "must be a manager" do
-    employee = factory_for_employee(@restaurant)
+    employee = FactoryGirl.create(:employee, restaurant: @restaurant)
     sign_in_as(employee)
 
     visit employees_path
@@ -27,7 +27,7 @@ feature "Mangaer deletes an employee" do
   end
 
   scenario "deletes an employee" do
-    employee = factory_for_employee(@restaurant)
+    employee = FactoryGirl.create(:employee, restaurant: @restaurant)
     sign_in_as(@manager)
 
     visit employees_path

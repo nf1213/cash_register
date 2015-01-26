@@ -3,7 +3,6 @@ class Employee < ActiveRecord::Base
   attr_accessor :password
 
   before_save :encrypt_password
-  after_save :clear_password
 
   belongs_to :restaurant
   has_many :shifts

@@ -20,11 +20,15 @@ FactoryGirl.define do
   end
 
   factory :employee do
-    name "Bob"
+    sequence(:name) { |n| "Bob#{n}"}
     status "Employee"
     password 333333
     salary 800
     restaurant
+
+    factory :manager do
+      status "Manager"
+    end
   end
 
   factory :sale do
@@ -37,24 +41,4 @@ FactoryGirl.define do
     item
     sale
   end
-end
-
-def password
-  333333
-end
-
-def factory_for_employee(restaurant)
-  Employee.create(name: "Bob", password: password, status: "Employee", salary: 800, restaurant: restaurant)
-end
-
-def factory_for_employee2(restaurant)
-  Employee.create(name: "Fred", password: password, status: "Employee", salary: 800, restaurant: restaurant)
-end
-
-def factory_for_manager(restaurant)
-  Employee.create(name: "Nicole", password: password, status: "Manager", salary: 800, restaurant: restaurant)
-end
-
-def factory_for_restaurant
-  Restaurant.create(name: "Factory Girl's Food", password: password)
 end

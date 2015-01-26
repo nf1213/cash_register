@@ -3,16 +3,16 @@ require "rails_helper"
 feature "Manager views sale data" do
 
   before(:each) do
-    @restaurant = factory_for_restaurant
+    @restaurant = FactoryGirl.create(:restaurant)
     sign_in_restaurant(@restaurant)
-    @manager = factory_for_manager(@restaurant)
+    @manager = FactoryGirl.create(:manager, restaurant: @restaurant)
     sale = FactoryGirl.create(:sale, employee: @manager, restaurant: @restaurant)
     item = FactoryGirl.create(:item, restaurant: @restaurant)
     @sale_item = SaleItem.create(restaurant: @restaurant,  sale: sale, item: item, name: item.name, price: item.price)
   end
 
   scenario "must be a manager" do
-    employee = factory_for_employee(@restaurant)
+    employee = FactoryGirl.create(:employee, restaurant: @restaurant)
     sign_in_as(employee)
 
     visit sales_path

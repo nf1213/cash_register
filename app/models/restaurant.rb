@@ -3,7 +3,6 @@ class Restaurant < ActiveRecord::Base
   attr_accessor :password
 
   before_save :encrypt_password
-  after_save :clear_password
 
   has_many :employees
   has_many :items
