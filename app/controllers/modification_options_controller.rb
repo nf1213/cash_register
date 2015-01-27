@@ -17,28 +17,27 @@ class ModificationOptionsController < ApplicationController
 
   def create
     modifications = params[:modification_option][:modification_ids]
-    modifications.delete("")
     item = params[:modification_option][:item]
-    if modifications.empty?
-      redirect_to new_modification_option_path, alert: "Please select some modifications for your item"
-    else
-      modifications.each do |m|
-        @modification_option = ModificationOption.new(item_id: item, modification_id: m)
-        @modification_option.save
-      end
-      redirect_to static_pages_manager_functions_path, notice: "Modification Options Saved"
-    end
+    create_func(modifications, item, new_modification_option_path)
   end
 
   def inverse_create
     items = params[:modification_option][:item_ids]
-    items.delete("")
     modification = params[:modification_option][:modification]
-    if items.empty?
-      redirect_to modification_options_inverse_new_path, alert: "Please select some items to add this modification to"
+    create_func(items, modification, modification_options_inverse_new_path, true)
+  end
+
+  def create_func(arr, obj, path, inverse=false)
+    arr.delete("")
+    if arr.empty?
+      redirect_to path, alert: "Please select some options"
     else
-      items.each do |i|
-        @modification_option = ModificationOption.new(item_id: i, modification_id: modification)
+      arr.each do |a|
+        if inverse
+          @modification_option = ModificationOption.new(item_id: a, modification_id: obj)
+        else
+          @modification_option = ModificationOption.new(item_id: obj, modification_id: a)
+        end
         @modification_option.save
       end
       redirect_to static_pages_manager_functions_path, notice: "Modification Options Saved"

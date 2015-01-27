@@ -39,7 +39,7 @@ feature "Manager creates modification options" do
     visit new_modification_option_path
 
     click_on "Create Options"
-    expect(page).to have_content "Please select some modifications for your item"
+    expect(page).to have_content "Please select some options"
   end
 
   scenario 'successfully adds an option to multiple items' do
@@ -62,7 +62,7 @@ feature "Manager creates modification options" do
     visit modification_options_inverse_new_path
 
     click_on "Create Options"
-    expect(page).to have_content "Please select some items to add this modification to"
+    expect(page).to have_content "Please select some options"
   end
 
 end
